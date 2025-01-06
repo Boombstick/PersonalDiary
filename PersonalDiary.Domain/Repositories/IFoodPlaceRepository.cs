@@ -1,4 +1,4 @@
-﻿using PersonalDiary.Domain.Models.Food;
+﻿using PersonalDiary.Domain.Models.FoodPlace;
 
 namespace PersonalDiary.Domain.Repositories
 {
@@ -6,5 +6,6 @@ namespace PersonalDiary.Domain.Repositories
     {
         Task Add(FoodPlace foodPlace);
         Task<FoodPlace> GetDetails(Guid id);
+        Task<IReadOnlyList<FoodPlace>> GetPagedList(int page, int pageSize);
     }
 }

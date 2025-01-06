@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using FluentValidation;
-using PersonalDiary.Domain.Models.Food;
 using PersonalDiary.Domain.Repositories;
+using PersonalDiary.Domain.Models.FoodPlace;
 
 namespace PersonalDiary.Application.Feature.Food
 {

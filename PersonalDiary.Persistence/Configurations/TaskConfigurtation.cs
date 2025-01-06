@@ -1,6 +1,6 @@
-﻿using PersonalDiary.Domain.Models;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using PersonalDiary.Domain.Models.MyTask;
 
 namespace PersonalDiary.Persistence.Configurations
 {

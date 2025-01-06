@@ -1,4 +1,4 @@
-﻿namespace PersonalDiary.Domain.Models
+﻿namespace PersonalDiary.Domain.Models.MyTask
 {
     public enum TaskStatus
     {

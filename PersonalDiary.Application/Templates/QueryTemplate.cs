@@ -1,7 +1,5 @@
 ﻿using MediatR;
 using FluentValidation;
-using static System.Runtime.InteropServices.JavaScript.JSType;
-using System.Runtime.Intrinsics.X86;
 
 namespace PersonalDiary.Application.Templates
 {

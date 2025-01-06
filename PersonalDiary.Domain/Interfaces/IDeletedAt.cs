@@ -1,4 +1,4 @@
-﻿namespace PersonalDiary.Domain.Models.Interfaces
+﻿namespace PersonalDiary.Domain.Interfaces
 {
     public interface IDeletedAt
     {

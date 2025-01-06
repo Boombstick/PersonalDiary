@@ -1,6 +1,6 @@
-﻿using PersonalDiary.Domain.Models;
-using Microsoft.EntityFrameworkCore;
-using PersonalDiary.Domain.Models.Food;
+﻿using Microsoft.EntityFrameworkCore;
+using PersonalDiary.Domain.Models.FoodPlace;
+using PersonalDiary.Domain.Models.MyTask;
 
 namespace PersonalDiary.Persistence
 {

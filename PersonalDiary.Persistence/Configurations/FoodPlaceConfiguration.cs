@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using PersonalDiary.Domain.Models.Food;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using PersonalDiary.Domain.Models.FoodPlace;
 
 namespace PersonalDiary.Persistence.Configurations
 {

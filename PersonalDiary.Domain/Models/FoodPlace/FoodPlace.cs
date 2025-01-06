@@ -1,6 +1,6 @@
-﻿using PersonalDiary.Domain.Models.Interfaces;
+﻿using PersonalDiary.Domain.Interfaces;
 
-namespace PersonalDiary.Domain.Models.Food
+namespace PersonalDiary.Domain.Models.FoodPlace
 {
     public class FoodPlace : ICreatedAt, IUpdatedAt
     {

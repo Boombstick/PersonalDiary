@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using PersonalDiary.Domain.Models.Food;
+using PersonalDiary.Domain.Models.FoodPlace;
 using PersonalDiary.Domain.Repositories;
 
 namespace PersonalDiary.Persistence.Repositories
@@ -16,10 +16,15 @@ namespace PersonalDiary.Persistence.Repositories
             _diaryDbContext.FoodPlaces.Add(foodPlace);
             await _diaryDbContext.SaveChangesAsync();
         }
+
         public async Task<FoodPlace> GetDetails(Guid id)
         {
             return await _diaryDbContext.FoodPlaces.FirstOrDefaultAsync(x => x.Id == id) ?? new FoodPlace();
         }
-
+        public async Task<IReadOnlyList<FoodPlace>> GetPagedList(int page, int pageSize)
+        {
+            var skip = (page - 1) * pageSize;
+            return await _diaryDbContext.FoodPlaces.Skip(skip).Take(pageSize).ToListAsync();
+        }
     }
 }

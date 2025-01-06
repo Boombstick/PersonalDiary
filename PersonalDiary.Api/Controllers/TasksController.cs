@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using PersonalDiary.Application.Feature.Tasks;
 
 namespace PersonalDiary.Api.Controllers
 {
@@ -7,26 +8,33 @@ namespace PersonalDiary.Api.Controllers
     public class TasksController : BaseValidatedController
     {
         [HttpPost]
-        public async Task<IActionResult> CreateTask()
+        public async Task<IActionResult> CreateTask([FromBody] Create.Command command)
         {
-
-            return Ok();
+            var id = await Mediator.Send(command);
+            return Ok(id);
         }
-        [HttpGet]
-        public async Task<IActionResult> DetailsOfTask()
+        [HttpGet("{id}")]
+        public async Task<IActionResult> DetailsOfTask(long id)
         {
-            return Ok();
+            return Ok(await Mediator.Send(new Details.Query { Id = id }));
         }
 
         [HttpPut]
-        public async Task<IActionResult> TaskChangeStatus()
+        public async Task<IActionResult> TaskChangeStatus([FromBody] ChangeStatus.Command command)
         {
-            return Ok();
+            await Mediator.Send(command);
+            return NoContent();
         }
         [HttpDelete]
         public async Task<IActionResult> DeleteTask()
         {
             return Ok();
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> PagedList([FromQuery] PagedList.Query query)
+        {
+            return Ok(await Mediator.Send(query));
         }
     }
 }
