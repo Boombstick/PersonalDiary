@@ -30,7 +30,7 @@ namespace PersonalDiary.Application.Feature.Tasks
                 MyTask task = new MyTask
                 {
                     Name = request.Name,
-                    DeadLine = request.DeadLine,
+                    DeadLine = request.DeadLine.HasValue ? TimeZoneInfo.ConvertTimeToUtc(request.DeadLine.Value) : null,
                     CreatedAt = DateTime.UtcNow,
                     Description = request.Description,
                 };

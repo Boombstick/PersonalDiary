@@ -2,7 +2,7 @@
 
 namespace PersonalDiary.Domain.Models.MyTask
 {
-    public class MyTask : ICreatedAt
+    public class MyTask : ICreatedAt, IDeadLine
     {
         public long Id { get; set; }
         public string Description { get; set; }

@@ -1,15 +1,17 @@
 ﻿using MediatR;
 using FluentValidation;
+using PersonalDiary.Application.Common;
 using PersonalDiary.Domain.Repositories;
 
 namespace PersonalDiary.Application.Feature.Tasks
 {
     public class PagedList
     {
-        public class Query : IRequest<IReadOnlyList<Model>>
+        public class Query : TimefilterblePagedListQuery, IRequest<IReadOnlyList<Model>>
         {
-            public int Page { get; set; }
-            public int PageSize { get; set; }
+            public DateTime? DeadLineStartDate { get; set; }
+            public DateTime? DeadLineEndDate { get; set; }
+            public Domain.Models.MyTask.TaskStatus Status { get; set; }
         }
 
         public class Model
@@ -37,7 +39,14 @@ namespace PersonalDiary.Application.Feature.Tasks
             }
             public async Task<IReadOnlyList<Model>> Handle(Query request, CancellationToken cancellationToken)
             {
-                var tasks = await _taskRepository.GetPagedList(request.Page, request.PageSize);
+                var tasks = await _taskRepository.GetPagedList(
+                    page: request.Page,
+                    pageSize: request.PageSize,
+                    startDate: request.StartDate,
+                    endDate: request.EndDate,
+                    deadLineStart: request.DeadLineStartDate,
+                    deadLineEnd: request.DeadLineEndDate,
+                    status: request.Status);
 
                 return tasks.Select(x => new Model
                 {

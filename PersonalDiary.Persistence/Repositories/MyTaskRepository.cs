@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PersonalDiary.Domain.Repositories;
 using PersonalDiary.Domain.Models.MyTask;
+using PersonalDiary.Persistence.Extensions;
+using PersonalDiary.Persistence.Extensions.TaskExtensions;
 
 namespace PersonalDiary.Persistence.Repositories
 {
@@ -20,10 +22,23 @@ namespace PersonalDiary.Persistence.Repositories
         {
             return await _diaryDbContext.Tasks.FirstOrDefaultAsync(x => x.Id == id) ?? new MyTask();
         }
-        public async Task<IReadOnlyList<MyTask>> GetPagedList(int page, int pageSize)
+        public async Task<IReadOnlyList<MyTask>> GetPagedList(
+            int page,
+            int pageSize,
+            DateTime? startDate,
+            DateTime? endDate,
+            DateTime? deadLineStart,
+            DateTime? deadLineEnd,
+            Domain.Models.MyTask.TaskStatus status)
         {
             var skip = (page - 1) * pageSize;
-            return await _diaryDbContext.Tasks.Skip(skip).Take(pageSize).ToListAsync();
+            return await _diaryDbContext.Tasks
+                .Where(x => status == Domain.Models.MyTask.TaskStatus.All || x.Status == status)
+                .CreatedBetweenDates(startDate, endDate)
+                .DeadLineBetweenDates(deadLineStart, deadLineEnd)
+                .Skip(skip)
+                .Take(pageSize)
+                .ToListAsync();
         }
         public async Task<bool> ChangeTaskStatus(long id, Domain.Models.MyTask.TaskStatus newStatus)
         {
