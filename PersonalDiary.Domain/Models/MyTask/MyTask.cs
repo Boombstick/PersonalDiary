@@ -15,6 +15,8 @@ namespace PersonalDiary.Domain.Models.MyTask
         public DateTime CreatedAt { get; set; }
         [Column(TypeName = "timestamp without time zone")]
         public DateTime UpdatedAt { get; set; }
+        public Guid BoardId { get; set; }
+        public TaskBoard Board { get; set; }
 
         public void ChangeTaskStatus(TaskStatus status)
         {

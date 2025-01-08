@@ -13,7 +13,7 @@ namespace PersonalDiary.Persistence.Repositories
         {
             _diaryDbContext = diaryDbContext;
         }
-        public async Task Add(MyTask task)
+        public async Task Create(MyTask task)
         {
             _diaryDbContext.Tasks.Add(task);
             await _diaryDbContext.SaveChangesAsync();

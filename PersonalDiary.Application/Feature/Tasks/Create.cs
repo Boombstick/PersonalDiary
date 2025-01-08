@@ -36,7 +36,7 @@ namespace PersonalDiary.Application.Feature.Tasks
                     UpdatedAt = dateTime,
                     Description = request.Description,
                 };
-                await _taskRepository.Add(task);
+                await _taskRepository.Create(task);
                 return task.Id;
             }
         }

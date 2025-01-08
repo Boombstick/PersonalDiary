@@ -25,6 +25,7 @@ namespace PersonalDiary.Api
 
             builder.Services.AddScoped<IFoodPlaceRepository, FoodPlaceRepository>();
             builder.Services.AddScoped<IMyTaskRepository, MyTaskRepository>();
+            builder.Services.AddScoped<ITaskBoardRepository, TaskBoardRepository>();
             builder.Services.AddMediatR(x => x.RegisterServicesFromAssembly(typeof(Create.Command).Assembly));
             builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestValidationBehavior<,>));
             builder.Services.AddDbContext<DiaryDbContext>(options => options.UseNpgsql(builder.Configuration.GetConnectionString("DiaryDatabase")));
