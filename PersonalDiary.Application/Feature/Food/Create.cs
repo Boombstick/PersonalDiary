@@ -36,7 +36,7 @@ namespace PersonalDiary.Application.Feature.Food
                     City = request.City,
                     Address = request.Adress,
                     Cousine = request.Cousine,
-                    UpdateAt = DateTime.UtcNow,
+                    UpdatedAt = DateTime.UtcNow,
                     CreatedAt = DateTime.UtcNow,
                     Description = request.Description,
                 };

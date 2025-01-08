@@ -27,11 +27,13 @@ namespace PersonalDiary.Application.Feature.Tasks
             public async Task<long> Handle(Command request, CancellationToken cancellationToken)
             {
                 var guid = Guid.NewGuid();
+                var dateTime = DateTime.SpecifyKind(DateTime.UtcNow, DateTimeKind.Unspecified);
                 MyTask task = new MyTask
                 {
                     Name = request.Name,
                     DeadLine = request.DeadLine.HasValue ? TimeZoneInfo.ConvertTimeToUtc(request.DeadLine.Value) : null,
-                    CreatedAt = DateTime.UtcNow,
+                    CreatedAt = dateTime,
+                    UpdatedAt = dateTime,
                     Description = request.Description,
                 };
                 await _taskRepository.Add(task);

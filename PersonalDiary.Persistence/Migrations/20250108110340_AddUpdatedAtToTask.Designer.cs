@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using PersonalDiary.Persistence;
@@ -11,9 +12,11 @@ using PersonalDiary.Persistence;
 namespace PersonalDiary.Persistence.Migrations
 {
     [DbContext(typeof(DiaryDbContext))]
-    partial class DiaryDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250108110340_AddUpdatedAtToTask")]
+    partial class AddUpdatedAtToTask
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -55,7 +58,7 @@ namespace PersonalDiary.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("FoodPlaces", (string)null);
+                    b.ToTable("FoodPlaces");
                 });
 
             modelBuilder.Entity("PersonalDiary.Domain.Models.MyTask.MyTask", b =>
@@ -88,7 +91,7 @@ namespace PersonalDiary.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Tasks", (string)null);
+                    b.ToTable("Tasks");
                 });
 #pragma warning restore 612, 618
         }

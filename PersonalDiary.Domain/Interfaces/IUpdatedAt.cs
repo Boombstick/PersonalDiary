@@ -2,6 +2,6 @@
 {
     public interface IUpdatedAt
     {
-        public DateTime UpdateAt { get; set; }
+        public DateTime UpdatedAt { get; set; }
     }
 }

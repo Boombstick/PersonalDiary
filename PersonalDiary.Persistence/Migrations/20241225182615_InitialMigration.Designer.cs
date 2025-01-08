@@ -43,7 +43,7 @@ namespace PersonalDiary.Persistence.Migrations
                         .HasColumnType("integer");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -54,7 +54,7 @@ namespace PersonalDiary.Persistence.Migrations
                         .HasColumnType("text");
 
                     b.Property<DateTime>("UpdateAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 

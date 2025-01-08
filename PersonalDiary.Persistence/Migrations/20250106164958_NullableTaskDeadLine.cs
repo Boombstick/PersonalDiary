@@ -14,7 +14,7 @@ namespace PersonalDiary.Persistence.Migrations
             migrationBuilder.AlterColumn<DateTime>(
                 name: "DeadLine",
                 table: "Tasks",
-                type: "timestamp without time zone",
+                type: "timestamp with time zone",
                 nullable: true,
                 oldClrType: typeof(DateTime),
                 defaultValue: null,

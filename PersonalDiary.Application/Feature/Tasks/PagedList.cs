@@ -20,6 +20,7 @@ namespace PersonalDiary.Application.Feature.Tasks
             public string Name { get; set; }
             public string Description { get; set; }
             public DateTime CreatedAt { get; set; }
+            public DateTime UpdatedAt { get; set; }
             public DateTime? DeadLine { get; set; }
             public Domain.Models.MyTask.TaskStatus Status { get; set; }
         }
@@ -50,12 +51,13 @@ namespace PersonalDiary.Application.Feature.Tasks
 
                 return tasks.Select(x => new Model
                 {
-                    CreatedAt = x.CreatedAt,
-                    DeadLine = x.DeadLine,
-                    Description = x.Description,
                     Id = x.Id,
                     Name = x.Name,
-                    Status = x.Status
+                    Status = x.Status,
+                    DeadLine = x.DeadLine,
+                    UpdatedAt = x.UpdatedAt,
+                    CreatedAt = x.CreatedAt,
+                    Description = x.Description,
                 }).ToList();
             }
         }

@@ -11,6 +11,6 @@ namespace PersonalDiary.Domain.Models.FoodPlace
         public string Description { get; set; }
         public Cousine Cousine { get; set; }
         public DateTime CreatedAt { get; set; }
-        public DateTime UpdateAt { get; set; }
+        public DateTime UpdatedAt { get; set; }
     }
 }

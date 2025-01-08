@@ -47,6 +47,7 @@ namespace PersonalDiary.Persistence.Repositories
                 return false;
 
             task.ChangeTaskStatus(newStatus);
+            task.UpdatedAt = DateTime.SpecifyKind(DateTime.UtcNow,DateTimeKind.Unspecified);
             await _diaryDbContext.SaveChangesAsync();
             return true;
         }

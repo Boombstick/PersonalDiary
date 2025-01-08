@@ -45,7 +45,7 @@ namespace PersonalDiary.Application.Feature.Food
                     Cousine = foodPlace.Cousine.ToString(),
                     Description = foodPlace.Description,
                     Name = foodPlace.Name,
-                    UpdateAt = foodPlace.UpdateAt,
+                    UpdateAt = foodPlace.UpdatedAt,
                 };
                 return model;
             }
