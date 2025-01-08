@@ -12,6 +12,7 @@ namespace PersonalDiary.Application.Feature.Tasks
             public DateTime? DeadLineStartDate { get; set; }
             public DateTime? DeadLineEndDate { get; set; }
             public Domain.Models.MyTask.TaskStatus Status { get; set; }
+            public Guid BoardId { get; set; }
         }
 
         public class Model
@@ -41,6 +42,7 @@ namespace PersonalDiary.Application.Feature.Tasks
             public async Task<IReadOnlyList<Model>> Handle(Query request, CancellationToken cancellationToken)
             {
                 var tasks = await _taskRepository.GetPagedList(
+                    boardId: request.BoardId,
                     page: request.Page,
                     pageSize: request.PageSize,
                     startDate: request.StartDate,

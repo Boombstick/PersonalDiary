@@ -26,5 +26,9 @@ namespace PersonalDiary.Persistence.Repositories
         {
             return await _diaryDbContext.TaskBoards.ToListAsync();
         }
+        public async Task<bool> BoardExists(Guid id)
+        {
+            return await _diaryDbContext.TaskBoards.AnyAsync(x => x.Id == id);
+        }
     }
 }
