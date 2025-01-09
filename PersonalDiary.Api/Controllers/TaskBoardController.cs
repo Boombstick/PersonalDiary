@@ -12,7 +12,7 @@ namespace PersonalDiary.Api.Controllers
         public async Task<IActionResult> Create([FromBody] Create.Command command)
         {
             var id = await Mediator.Send(command);
-            return Ok(id);
+            return CreatedAtRoute(nameof(DetailsOfTask), id);
         }
         [HttpGet("{id}")]
         public async Task<IActionResult> DetailsOfTask(Guid id)

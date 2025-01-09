@@ -12,7 +12,7 @@ namespace PersonalDiary.Application.Feature.Tasks
             public DateTime? DeadLineStartDate { get; set; }
             public DateTime? DeadLineEndDate { get; set; }
             public Domain.Models.MyTask.TaskStatus Status { get; set; }
-            public Guid BoardId { get; set; }
+            public Guid? BoardId { get; set; }
         }
 
         public class Model

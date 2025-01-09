@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.34928.147
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersonalDiary.Api", "PersonalDiary.Api\PersonalDiary.Api.csproj", "{B2B2CBBC-AF0E-48B7-BA02-3732ED373092}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalDiary.Api", "PersonalDiary.Api\PersonalDiary.Api.csproj", "{B2B2CBBC-AF0E-48B7-BA02-3732ED373092}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersonalDiary.Domain", "PersonalDiary.Domain\PersonalDiary.Domain.csproj", "{CD8C0945-3772-4D9D-8B64-57B8C56A61E9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalDiary.Domain", "PersonalDiary.Domain\PersonalDiary.Domain.csproj", "{CD8C0945-3772-4D9D-8B64-57B8C56A61E9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersonalDiary.Application", "PersonalDiary.Application\PersonalDiary.Application.csproj", "{A2B04E8E-E279-424A-A6C5-3605983F8D2D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalDiary.Application", "PersonalDiary.Application\PersonalDiary.Application.csproj", "{A2B04E8E-E279-424A-A6C5-3605983F8D2D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersonalDiary.Tests", "PersonalDiary.Tests\PersonalDiary.Tests.csproj", "{EAB82620-9834-4192-82CA-E43857A4007B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalDiary.Tests", "PersonalDiary.Tests\PersonalDiary.Tests.csproj", "{EAB82620-9834-4192-82CA-E43857A4007B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersonalDiary.Persistence", "PersonalDiary.Persistence\PersonalDiary.Persistence.csproj", "{890D43F4-BAEF-4F06-8C11-BA13AAEE723C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalDiary.Persistence", "PersonalDiary.Persistence\PersonalDiary.Persistence.csproj", "{890D43F4-BAEF-4F06-8C11-BA13AAEE723C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -32,9 +32,7 @@ Global
 		{A2B04E8E-E279-424A-A6C5-3605983F8D2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A2B04E8E-E279-424A-A6C5-3605983F8D2D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{EAB82620-9834-4192-82CA-E43857A4007B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EAB82620-9834-4192-82CA-E43857A4007B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EAB82620-9834-4192-82CA-E43857A4007B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EAB82620-9834-4192-82CA-E43857A4007B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{890D43F4-BAEF-4F06-8C11-BA13AAEE723C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{890D43F4-BAEF-4F06-8C11-BA13AAEE723C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{890D43F4-BAEF-4F06-8C11-BA13AAEE723C}.Release|Any CPU.ActiveCfg = Release|Any CPU

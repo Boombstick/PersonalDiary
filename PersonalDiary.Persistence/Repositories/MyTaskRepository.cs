@@ -23,7 +23,7 @@ namespace PersonalDiary.Persistence.Repositories
             return await _diaryDbContext.Tasks.FirstOrDefaultAsync(x => x.Id == id) ?? new MyTask();
         }
         public async Task<IReadOnlyList<MyTask>> GetPagedList(
-            Guid boardId,
+            Guid? boardId,
             int page,
             int pageSize,
             DateTime? startDate,
@@ -34,7 +34,7 @@ namespace PersonalDiary.Persistence.Repositories
         {
             var skip = (page - 1) * pageSize;
             return await _diaryDbContext.Tasks
-                .Where(x => x.BoardId == boardId)
+                .Where(x => boardId == null || x.BoardId == boardId)
                 .Where(x => status == Domain.Models.MyTask.TaskStatus.All || x.Status == status)
                 .CreatedBetweenDates(startDate, endDate)
                 .DeadLineBetweenDates(deadLineStart, deadLineEnd)
