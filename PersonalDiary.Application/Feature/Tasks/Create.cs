@@ -30,10 +30,9 @@ namespace PersonalDiary.Application.Feature.Tasks
             }
             public async Task<long> Handle(Command request, CancellationToken cancellationToken)
             {
-                var guid = Guid.NewGuid();
-                var dateTime = DateTime.SpecifyKind(DateTime.UtcNow, DateTimeKind.Unspecified);
                 if (!await _taskBoardRepository.BoardExists(request.BoardId))
                     throw new NotFoundException($"Board with id {request.BoardId} not found");
+                var dateTime = DateTime.SpecifyKind(DateTime.UtcNow, DateTimeKind.Unspecified);
 
                 MyTask task = new MyTask
                 {

@@ -11,17 +11,18 @@ namespace PersonalDiary.Api.Controllers
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] Create.Command command)
         {
-            var id = await Mediator.Send(command);
-            return CreatedAtRoute(nameof(DetailsOfTask), id);
+            var taskId = await Mediator.Send(command);
+            return CreatedAtRoute(nameof(DetailsOfTask), new { id = taskId }, taskId);
         }
-        [HttpGet("{id}")]
+        [HttpGet("{id}", Name = nameof(DetailsOfTask))]
         public async Task<IActionResult> DetailsOfTask(Guid id)
         {
             return Ok(await Mediator.Send(new Details.Query { Id = id }));
         }
-        [HttpDelete]
-        public async Task<IActionResult> DeleteTask()
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteTask(Guid id)
         {
+            await Mediator.Send(new Delete.Command { Id = id });
             return Ok();
         }
 

@@ -25,9 +25,10 @@ namespace PersonalDiary.Api.Controllers
             await Mediator.Send(command);
             return NoContent();
         }
-        [HttpDelete]
-        public async Task<IActionResult> DeleteTask()
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteTask(long id)
         {
+            await Mediator.Send(new Delete.Command { Id = id });
             return Ok();
         }
 

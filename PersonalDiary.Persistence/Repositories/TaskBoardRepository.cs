@@ -4,10 +4,10 @@ using PersonalDiary.Domain.Models.MyTask;
 
 namespace PersonalDiary.Persistence.Repositories
 {
-    public class TaskBoardRepository : ITaskBoardRepository
+    public class TaskBoardRepository : Repository<TaskBoard>, ITaskBoardRepository
     {
         private readonly DiaryDbContext _diaryDbContext;
-        public TaskBoardRepository(DiaryDbContext diaryDbContext)
+        public TaskBoardRepository(DiaryDbContext diaryDbContext) : base(diaryDbContext)
         {
             _diaryDbContext = diaryDbContext;
         }

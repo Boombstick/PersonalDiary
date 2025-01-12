@@ -2,7 +2,7 @@
 
 namespace PersonalDiary.Domain.Repositories
 {
-    public interface ITaskBoardRepository
+    public interface ITaskBoardRepository : IRepository<TaskBoard>
     {
         Task<bool> BoardExists(Guid id);
         Task Create(TaskBoard board);

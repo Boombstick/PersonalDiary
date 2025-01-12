@@ -28,11 +28,19 @@ namespace PersonalDiary.Application.Feature.Tasks
             }
             public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
             {
-                if (await _taskRepository.ChangeTaskStatus(request.Id, request.Status))
+                try
                 {
+                    await _taskRepository.ChangeStatus(request.Id, request.Status);
                     return Unit.Value;
                 }
-                throw new NotFoundException("Not Found");
+                catch (KeyNotFoundException)
+                {
+                    throw new NotFoundException("Not Found");
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
             }
         }
     }

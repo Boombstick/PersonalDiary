@@ -6,10 +6,10 @@ using PersonalDiary.Persistence.Extensions.TaskExtensions;
 
 namespace PersonalDiary.Persistence.Repositories
 {
-    public class MyTaskRepository : IMyTaskRepository
+    public class MyTaskRepository : Repository<MyTask>,IMyTaskRepository
     {
         private readonly DiaryDbContext _diaryDbContext;
-        public MyTaskRepository(DiaryDbContext diaryDbContext)
+        public MyTaskRepository(DiaryDbContext diaryDbContext) : base(diaryDbContext) 
         {
             _diaryDbContext = diaryDbContext;
         }
@@ -42,16 +42,13 @@ namespace PersonalDiary.Persistence.Repositories
                 .Take(pageSize)
                 .ToListAsync();
         }
-        public async Task<bool> ChangeTaskStatus(long id, Domain.Models.MyTask.TaskStatus newStatus)
+        public async Task ChangeStatus(long id, Domain.Models.MyTask.TaskStatus newStatus)
         {
-            var task = await _diaryDbContext.Tasks.FirstOrDefaultAsync(x => x.Id == id);
-            if (task == null)
-                return false;
+            var task = await _diaryDbContext.Tasks.FirstOrDefaultAsync(x => x.Id == id) ?? throw new KeyNotFoundException();
 
             task.ChangeTaskStatus(newStatus);
             task.UpdatedAt = DateTime.SpecifyKind(DateTime.UtcNow, DateTimeKind.Unspecified);
             await _diaryDbContext.SaveChangesAsync();
-            return true;
         }
     }
 }
