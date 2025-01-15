@@ -2,6 +2,7 @@
 using FluentValidation;
 using PersonalDiary.Application.Common;
 using PersonalDiary.Domain.Repositories;
+using TaskStatus = PersonalDiary.Domain.Models.MyTask.TaskStatus;
 
 namespace PersonalDiary.Application.Feature.Tasks
 {
@@ -11,7 +12,7 @@ namespace PersonalDiary.Application.Feature.Tasks
         {
             public DateTime? DeadLineStartDate { get; set; }
             public DateTime? DeadLineEndDate { get; set; }
-            public Domain.Models.MyTask.TaskStatus Status { get; set; }
+            public TaskStatus Status { get; set; }
             public Guid? BoardId { get; set; }
         }
 
@@ -23,7 +24,7 @@ namespace PersonalDiary.Application.Feature.Tasks
             public DateTime CreatedAt { get; set; }
             public DateTime UpdatedAt { get; set; }
             public DateTime? DeadLine { get; set; }
-            public Domain.Models.MyTask.TaskStatus Status { get; set; }
+            public TaskStatus Status { get; set; }
         }
         public class Validator : AbstractValidator<Query>
         {

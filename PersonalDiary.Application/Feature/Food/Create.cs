@@ -12,7 +12,7 @@ namespace PersonalDiary.Application.Feature.Food
             public string Name { get; set; }
             public string Description { get; set; }
             public Cousine Cousine { get; set; }
-            public string City { get; set; }
+            public long CityId { get; set; }
             public string Adress { get; set; }
         }
         public class Validator : AbstractValidator<Command>
@@ -33,7 +33,7 @@ namespace PersonalDiary.Application.Feature.Food
                 {
                     Id = guid,
                     Name = request.Name,
-                    City = request.City,
+                    CityId = request.CityId,
                     Address = request.Adress,
                     Cousine = request.Cousine,
                     UpdatedAt = DateTime.UtcNow,

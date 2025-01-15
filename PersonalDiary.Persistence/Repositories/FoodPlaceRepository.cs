@@ -19,12 +19,16 @@ namespace PersonalDiary.Persistence.Repositories
 
         public async Task<FoodPlace> GetDetails(Guid id)
         {
-            return await _diaryDbContext.FoodPlaces.FirstOrDefaultAsync(x => x.Id == id) ?? new FoodPlace();
+            return await _diaryDbContext.FoodPlaces.Include(x => x.City).FirstOrDefaultAsync(x => x.Id == id) ?? new FoodPlace();
         }
         public async Task<IReadOnlyList<FoodPlace>> GetPagedList(int page, int pageSize)
         {
             var skip = (page - 1) * pageSize;
-            return await _diaryDbContext.FoodPlaces.Skip(skip).Take(pageSize).ToListAsync();
+            return await _diaryDbContext.FoodPlaces
+                .Include(x=>x.City)
+                .Skip(skip)
+                .Take(pageSize)
+                .ToListAsync();
         }
     }
 }

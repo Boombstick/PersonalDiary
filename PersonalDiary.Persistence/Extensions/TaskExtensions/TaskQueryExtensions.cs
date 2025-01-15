@@ -2,7 +2,7 @@
 
 namespace PersonalDiary.Persistence.Extensions.TaskExtensions
 {
-    public static class TaskExtensions
+    public static class TaskQueryExtensions
     {
         public static IQueryable<T> DeadLineBetweenDates<T>(this IQueryable<T> query, DateTime? startDate, DateTime? endDate) where T : IDeadLine
         {

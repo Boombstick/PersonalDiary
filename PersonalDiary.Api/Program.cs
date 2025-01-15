@@ -7,12 +7,13 @@ using PersonalDiary.Domain.Repositories;
 using PersonalDiary.Persistence.Repositories;
 using PersonalDiary.Application.Feature.Food;
 using PersonalDiary.Application.Infrastructure;
+using PersonalDiary.Persistence.Repositories.DictionaryRepository;
 
 namespace PersonalDiary.Api
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
 
@@ -33,6 +34,7 @@ namespace PersonalDiary.Api
             builder.Services.AddScoped<IFoodPlaceRepository, FoodPlaceRepository>();
             builder.Services.AddScoped<IMyTaskRepository, MyTaskRepository>();
             builder.Services.AddScoped<ITaskBoardRepository, TaskBoardRepository>();
+            builder.Services.AddScoped<IDictionaryRepository, DictionaryRepository>();
 
             // MediatR
             builder.Services.AddMediatR(x => x.RegisterServicesFromAssembly(typeof(Create.Command).Assembly));
@@ -69,7 +71,8 @@ namespace PersonalDiary.Api
             app.UseAuthorization();
             app.MapControllers();
 
+            await DatabaseInitializer.MigrateDatabase(app.Services);
             app.Run();
-        }
+        }     
     }
 }
