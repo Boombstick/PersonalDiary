@@ -1,7 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.Text.RegularExpressions;
 using PersonalDiary.Domain.Models.MyTask;
 using PersonalDiary.Domain.Models.FoodPlace;
-using System.Text.RegularExpressions;
+using PersonalDiary.Domain.Models.Dictionaries;
 
 namespace PersonalDiary.Persistence
 {
@@ -10,6 +11,7 @@ namespace PersonalDiary.Persistence
         public DbSet<MyTask> Tasks { get; set; }
         public DbSet<FoodPlace> FoodPlaces { get; set; }
         public DbSet<TaskBoard> TaskBoards { get; set; }
+        public DbSet<City> Cities { get; set; }
 
         public DiaryDbContext(DbContextOptions options) : base(options)
         {

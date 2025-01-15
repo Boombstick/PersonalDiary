@@ -1,0 +1,70 @@
+﻿using Newtonsoft.Json;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using PersonalDiary.Domain.Models.Dictionaries;
+
+namespace PersonalDiary.Persistence
+{
+    public static class DatabaseInitializer
+    {
+        public static async Task MigrateDatabase(IServiceProvider services)
+        {
+            using (var scope = services.CreateScope())
+            {
+                var context = scope.ServiceProvider.GetRequiredService<DiaryDbContext>();
+                try
+                {
+                    await context.Database.MigrateAsync();
+                }
+                catch
+                {
+                    throw new Exception("Alarm Миграции не применились");
+                }
+                if (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") != "Development")
+                {
+                    await UpdateDictionaryAsync(context);
+                }
+                if (context.Cities.Count() < 2)
+                {
+                    await SeedCityDictionaryAsync(context);
+                }
+            }
+        }
+        private static async Task SeedCityDictionaryAsync(DiaryDbContext context)
+        {
+
+            var cities = GetDictionaryEntities<City>("Cities");
+            await context.Cities.AddRangeAsync(cities);
+            await context.SaveChangesAsync();
+        }
+        private static async Task UpdateDictionaryAsync(DiaryDbContext context)
+        {
+            var cities = GetDictionaryEntities<City>("Cities");
+            foreach (var entry in cities)
+            {
+                if (context.Cities.Any(d => d.Id == entry.Id))
+                {
+                    context.Cities.Add(new City
+                    {
+                        Name = entry.Name,
+                    });
+                }
+            }
+            await context.SaveChangesAsync();
+        }
+
+        private static List<T> GetDictionaryEntities<T>(string resourceJsonFileNameWithoutExt)
+        {
+            try
+            {
+                var filePath = $"E:\\VisualGIT\\PersonalDiary\\PersonalDiary.Persistence\\SeedData\\{resourceJsonFileNameWithoutExt}.json";
+                var json = File.ReadAllText(filePath);
+                return JsonConvert.DeserializeObject<List<T>>(json) ?? throw new Exception($"Не получилось прочитать json для файла ${resourceJsonFileNameWithoutExt}.json");
+            }
+            catch
+            {
+                throw;
+            }
+        }
+    }
+}
