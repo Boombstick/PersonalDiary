@@ -1,10 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using PersonalDiary.Domain.Models.MyTask;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace PersonalDiary.Persistence.Configurations
 {
-    public class TaskConfigurtation : IEntityTypeConfiguration<MyTask>
+    public class TaskConfiguration : IEntityTypeConfiguration<MyTask>
     {
         public void Configure(EntityTypeBuilder<MyTask> builder)
         {

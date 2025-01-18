@@ -11,6 +11,9 @@ namespace PersonalDiary.Application.Feature.Food
         {
             public int Page { get; set; }
             public int PageSize { get; set; }
+            public long? CityId { get; set; }
+            public long? CuisineId { get; set; }
+            public string? SearchTerm { get; set; }
         }
 
         public class Model
@@ -28,7 +31,7 @@ namespace PersonalDiary.Application.Feature.Food
         {
             public Validator()
             {
-                RuleFor(x => x);
+                
             }
         }
         public class Handler : IRequestHandler<Query, IReadOnlyList<Model>>
@@ -40,7 +43,12 @@ namespace PersonalDiary.Application.Feature.Food
             }
             public async Task<IReadOnlyList<Model>> Handle(Query request, CancellationToken cancellationToken)
             {
-                var places = await _foodPlaceRepository.GetPagedList(request.Page, request.PageSize);
+                var places = await _foodPlaceRepository.GetPagedList(
+                    request.Page,
+                    request.PageSize,
+                    request.SearchTerm,
+                    request.CityId,
+                    request.CuisineId);
                 return places.Select(foodPlace => new Model
                 {
                     Id = foodPlace.Id,

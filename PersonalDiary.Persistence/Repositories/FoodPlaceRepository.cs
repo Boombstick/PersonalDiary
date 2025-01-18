@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using PersonalDiary.Domain.Models.FoodPlace;
 using PersonalDiary.Domain.Repositories;
+using PersonalDiary.Domain.Models.FoodPlace;
 
 namespace PersonalDiary.Persistence.Repositories
 {
@@ -19,13 +19,21 @@ namespace PersonalDiary.Persistence.Repositories
 
         public async Task<FoodPlace> GetDetails(Guid id)
         {
-            return await _diaryDbContext.FoodPlaces.Include(x => x.City).FirstOrDefaultAsync(x => x.Id == id) ?? new FoodPlace();
+            return await _diaryDbContext.FoodPlaces.Include(x => x.City).FirstOrDefaultAsync(x => x.Id == id) ?? throw new KeyNotFoundException();
         }
-        public async Task<IReadOnlyList<FoodPlace>> GetPagedList(int page, int pageSize)
+        public async Task<IReadOnlyList<FoodPlace>> GetPagedList(
+            int page,
+            int pageSize,
+            string searchTerm,
+            long? cityId,
+            long? cuisineId)
         {
             var skip = (page - 1) * pageSize;
             return await _diaryDbContext.FoodPlaces
-                .Include(x=>x.City)
+                .Include(x => x.City)
+                .Where(x => cityId == null || x.CityId == cityId)
+                .Where(x => cuisineId == null || x.Cousine == (Cousine)cuisineId!)
+                .Where(x => searchTerm == null || x.Name.Contains(searchTerm))
                 .Skip(skip)
                 .Take(pageSize)
                 .ToListAsync();

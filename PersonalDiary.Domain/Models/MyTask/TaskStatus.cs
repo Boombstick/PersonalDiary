@@ -2,7 +2,6 @@
 {
     public enum TaskStatus
     {
-        All = 0,
         Open = 1,
         Canceled = 2,
         Completed = 3,

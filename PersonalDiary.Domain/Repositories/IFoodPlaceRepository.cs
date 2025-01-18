@@ -6,6 +6,6 @@ namespace PersonalDiary.Domain.Repositories
     {
         Task Add(FoodPlace foodPlace);
         Task<FoodPlace> GetDetails(Guid id);
-        Task<IReadOnlyList<FoodPlace>> GetPagedList(int page, int pageSize);
+        Task<IReadOnlyList<FoodPlace>> GetPagedList(int page, int pageSize, string searchTerm, long? cityId, long? cuisineId);
     }
 }

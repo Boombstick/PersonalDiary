@@ -3,13 +3,14 @@ using PersonalDiary.Domain.Repositories;
 using PersonalDiary.Domain.Models.MyTask;
 using PersonalDiary.Persistence.Extensions;
 using PersonalDiary.Persistence.Extensions.TaskExtensions;
+using TaskStatus = PersonalDiary.Domain.Models.MyTask.TaskStatus;
 
 namespace PersonalDiary.Persistence.Repositories
 {
-    public class MyTaskRepository : Repository<MyTask>,IMyTaskRepository
+    public class MyTaskRepository : Repository<MyTask>, IMyTaskRepository
     {
         private readonly DiaryDbContext _diaryDbContext;
-        public MyTaskRepository(DiaryDbContext diaryDbContext) : base(diaryDbContext) 
+        public MyTaskRepository(DiaryDbContext diaryDbContext) : base(diaryDbContext)
         {
             _diaryDbContext = diaryDbContext;
         }
@@ -30,19 +31,23 @@ namespace PersonalDiary.Persistence.Repositories
             DateTime? endDate,
             DateTime? deadLineStart,
             DateTime? deadLineEnd,
-            Domain.Models.MyTask.TaskStatus status)
+            TaskStatus status)
         {
             var skip = (page - 1) * pageSize;
             return await _diaryDbContext.Tasks
                 .Where(x => boardId == null || x.BoardId == boardId)
-                .Where(x => status == Domain.Models.MyTask.TaskStatus.All || x.Status == status)
+                .Where(x => status == 0 || x.Status == status)
                 .CreatedBetweenDates(startDate, endDate)
                 .DeadLineBetweenDates(deadLineStart, deadLineEnd)
+                .OrderBy(t => t.Status == TaskStatus.WorkInProgress ? 1 :
+                  t.Status == TaskStatus.Open ? 2 :
+                  t.Status == TaskStatus.Completed ? 3 :
+                  t.Status == TaskStatus.Canceled ? 4 : 5)
                 .Skip(skip)
                 .Take(pageSize)
                 .ToListAsync();
         }
-        public async Task ChangeStatus(long id, Domain.Models.MyTask.TaskStatus newStatus)
+        public async Task ChangeStatus(long id, TaskStatus newStatus)
         {
             var task = await _diaryDbContext.Tasks.FirstOrDefaultAsync(x => x.Id == id) ?? throw new KeyNotFoundException();
 

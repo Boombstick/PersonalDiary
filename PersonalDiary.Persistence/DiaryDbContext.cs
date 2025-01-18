@@ -3,6 +3,7 @@ using System.Text.RegularExpressions;
 using PersonalDiary.Domain.Models.MyTask;
 using PersonalDiary.Domain.Models.FoodPlace;
 using PersonalDiary.Domain.Models.Dictionaries;
+using PersonalDiary.Persistence.Configurations;
 
 namespace PersonalDiary.Persistence
 {

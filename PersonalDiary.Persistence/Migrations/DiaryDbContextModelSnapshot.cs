@@ -39,7 +39,7 @@ namespace PersonalDiary.Persistence.Migrations
                     b.HasKey("Id")
                         .HasName("pk_cities");
 
-                    b.ToTable("cities");
+                    b.ToTable("cities", (string)null);
                 });
 
             modelBuilder.Entity("PersonalDiary.Domain.Models.FoodPlace.FoodPlace", b =>
@@ -86,7 +86,7 @@ namespace PersonalDiary.Persistence.Migrations
                     b.HasIndex("CityId")
                         .HasDatabaseName("ix_food_places_city_id");
 
-                    b.ToTable("food_places");
+                    b.ToTable("food_places", (string)null);
                 });
 
             modelBuilder.Entity("PersonalDiary.Domain.Models.MyTask.MyTask", b =>
@@ -134,7 +134,7 @@ namespace PersonalDiary.Persistence.Migrations
                     b.HasIndex("BoardId")
                         .HasDatabaseName("ix_tasks_board_id");
 
-                    b.ToTable("tasks");
+                    b.ToTable("tasks", (string)null);
                 });
 
             modelBuilder.Entity("PersonalDiary.Domain.Models.MyTask.TaskBoard", b =>
@@ -152,7 +152,7 @@ namespace PersonalDiary.Persistence.Migrations
                     b.HasKey("Id")
                         .HasName("pk_task_boards");
 
-                    b.ToTable("task_boards");
+                    b.ToTable("task_boards", (string)null);
                 });
 
             modelBuilder.Entity("PersonalDiary.Domain.Models.FoodPlace.FoodPlace", b =>
