@@ -1,4 +1,4 @@
-﻿namespace PersonalDiary.Domain.Models.FoodPlace
+﻿namespace PersonalDiary.Domain.Models.FoodPlaces
 {
     public enum Cousine
     {

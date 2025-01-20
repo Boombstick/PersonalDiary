@@ -1,4 +1,4 @@
-﻿using PersonalDiary.Domain.Models.FoodPlace;
+﻿using PersonalDiary.Domain.Models.FoodPlaces;
 
 namespace PersonalDiary.Domain.Repositories
 {

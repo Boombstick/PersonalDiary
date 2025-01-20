@@ -25,4 +25,8 @@
     <ProjectReference Include="..\PersonalDiary.Domain\PersonalDiary.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Configurations\Новая папка\" />
+  </ItemGroup>
+
 </Project>

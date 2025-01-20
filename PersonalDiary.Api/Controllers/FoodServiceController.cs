@@ -30,5 +30,17 @@ namespace PersonalDiary.Api.Controllers
         {
             return Ok(await Mediator.Send(query));
         }
+        [HttpPost("review")]
+        public async Task<IActionResult> CreateReviewOfPlace([FromBody] CreateReview.Command command)
+        {
+            var id = await Mediator.Send(command);
+            return Ok(id);
+        }
+        [HttpGet("review")]
+        public async Task<IActionResult> GetRewievOfPlace([FromQuery] ReviewList.Query query)
+        {
+            var list = await Mediator.Send(query);
+            return Ok(list);
+        }
     }
 }

@@ -1,9 +1,10 @@
 ﻿using PersonalDiary.Domain.Interfaces;
+using PersonalDiary.Domain.AbstractClasses;
 using PersonalDiary.Domain.Models.Dictionaries;
 
-namespace PersonalDiary.Domain.Models.FoodPlace
+namespace PersonalDiary.Domain.Models.FoodPlaces
 {
-    public class FoodPlace : ICreatedAt, IUpdatedAt
+    public class FoodPlace : RateableEntity, ICreatedAt, IUpdatedAt
     {
         public Guid Id { get; set; }
         public string Name { get; set; }

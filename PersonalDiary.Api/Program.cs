@@ -35,6 +35,7 @@ namespace PersonalDiary.Api
             builder.Services.AddScoped<IMyTaskRepository, MyTaskRepository>();
             builder.Services.AddScoped<ITaskBoardRepository, TaskBoardRepository>();
             builder.Services.AddScoped<IDictionaryRepository, DictionaryRepository>();
+            builder.Services.AddScoped<IRatingRepository, RatingRepository>();
 
             // MediatR
             builder.Services.AddMediatR(x => x.RegisterServicesFromAssembly(typeof(Create.Command).Assembly));
