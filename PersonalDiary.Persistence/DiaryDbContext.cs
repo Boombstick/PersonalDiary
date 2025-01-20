@@ -1,13 +1,16 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Text.RegularExpressions;
+using PersonalDiary.Domain.Models.Users;
 using PersonalDiary.Domain.Models.MyTask;
 using PersonalDiary.Domain.Models.Reviews;
 using PersonalDiary.Domain.Models.FoodPlaces;
 using PersonalDiary.Domain.Models.Dictionaries;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 
 namespace PersonalDiary.Persistence
 {
-    public class DiaryDbContext : DbContext
+    public class DiaryDbContext : IdentityDbContext<User, Role, Guid>
     {
         public DbSet<MyTask> Tasks { get; set; }
         public DbSet<FoodPlace> FoodPlaces { get; set; }
@@ -46,6 +49,14 @@ namespace PersonalDiary.Persistence
                     index.SetDatabaseName(ToSnakeCase(index.GetDatabaseName()));
                 }
             }
+
+            modelBuilder.Entity<User>().ToTable("users");
+            modelBuilder.Entity<Role>().ToTable("roles");
+            modelBuilder.Entity<IdentityUserRole<Guid>>().ToTable("user_roles");
+            modelBuilder.Entity<IdentityUserClaim<Guid>>().ToTable("user_claims");
+            modelBuilder.Entity<IdentityUserLogin<Guid>>().ToTable("user_logins");
+            modelBuilder.Entity<IdentityRoleClaim<Guid>>().ToTable("role_claims");
+            modelBuilder.Entity<IdentityUserToken<Guid>>().ToTable("user_tokens");
         }
 
         private string ToSnakeCase(string input)
