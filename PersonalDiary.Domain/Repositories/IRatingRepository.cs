@@ -1,6 +1,6 @@
 ﻿using PersonalDiary.Domain.Models.Reviews;
 
-namespace PersonalDiary.Persistence.Repositories
+namespace PersonalDiary.Domain.Repositories
 {
     public interface IRatingRepository
     {

@@ -1,6 +1,6 @@
 ﻿using MediatR;
 using FluentValidation;
-using PersonalDiary.Persistence.Repositories;
+using PersonalDiary.Domain.Repositories;
 
 namespace PersonalDiary.Application.Feature.Food
 {

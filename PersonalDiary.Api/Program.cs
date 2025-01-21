@@ -1,12 +1,19 @@
 using MediatR;
+using System.Text;
 using Newtonsoft.Json;
 using PersonalDiary.Persistence;
 using PersonalDiary.Api.Filters;
+using PersonalDiary.Api.Security;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.IdentityModel.Tokens;
 using PersonalDiary.Domain.Repositories;
+using PersonalDiary.Domain.Models.Users;
+using PersonalDiary.Application.Interfaces;
 using PersonalDiary.Persistence.Repositories;
 using PersonalDiary.Application.Feature.Food;
 using PersonalDiary.Application.Infrastructure;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using PersonalDiary.Persistence.Repositories.DictionaryRepository;
 
 namespace PersonalDiary.Api
@@ -43,7 +50,40 @@ namespace PersonalDiary.Api
 
             // DbContext
             builder.Services.AddDbContext<DiaryDbContext>(options => options.UseNpgsql(builder.Configuration.GetConnectionString("DiaryDatabase")));
+            builder.Services.AddIdentity<User, Role>(options =>
+            {
+                options.Password.RequireDigit = true;
+                options.Password.RequiredLength = 8;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequireLowercase = false;
+                options.User.RequireUniqueEmail = true;
+            })
+            .AddEntityFrameworkStores<DiaryDbContext>()
+            .AddDefaultTokenProviders();
 
+            //Auth
+            builder.Services.Configure<TokenManagement>(builder.Configuration.GetSection("TokenManagement"));
+            builder.Services.AddAuthentication(x =>
+            {
+                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(x =>
+            {
+                x.RequireHttpsMetadata = false;
+                x.SaveToken = true;
+                x.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = false,
+                    ValidateAudience = false,
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
+                    ValidIssuer = builder.Configuration["TokenManagement:Issuer"],
+                    ValidAudience = builder.Configuration["TokenManagement:Audience"],
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["TokenManagement:Secret"]!))
+                };
+            });
+            builder.Services.AddTransient<IJwtTokenProvider, JwtTokenProvider>();
 
 
             builder.Services.AddScoped<CustomExceptionFilter>();
@@ -69,11 +109,12 @@ namespace PersonalDiary.Api
 
             app.UseHttpsRedirection();
 
+            app.UseAuthentication();
             app.UseAuthorization();
             app.MapControllers();
 
             await DatabaseInitializer.MigrateDatabase(app.Services);
             app.Run();
-        }     
+        }
     }
 }
