@@ -1,9 +1,11 @@
-﻿namespace PersonalDiary.Domain.Models.Reviews
+﻿using PersonalDiary.Domain.Interfaces;
+
+namespace PersonalDiary.Domain.Models.Reviews
 {
-    public class Review
+    public abstract class Review : ICreatedAt
     {
         public long Id { get; set; }
-        public virtual float Rating { get; set; }
-        public string Description { get; set; }
+        public string Comment { get; set; }
+        public DateTime CreatedAt { get; set; }
     }
 }

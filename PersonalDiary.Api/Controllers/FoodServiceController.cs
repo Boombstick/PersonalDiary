@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using PersonalDiary.Application.Feature.Food;
 
 namespace PersonalDiary.Api.Controllers
@@ -30,6 +31,7 @@ namespace PersonalDiary.Api.Controllers
         {
             return Ok(await Mediator.Send(query));
         }
+        [Authorize]
         [HttpPost("review")]
         public async Task<IActionResult> CreateReviewOfPlace([FromBody] CreateReview.Command command)
         {

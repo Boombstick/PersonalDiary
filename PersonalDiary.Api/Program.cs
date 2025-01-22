@@ -1,9 +1,11 @@
 using MediatR;
 using System.Text;
 using Newtonsoft.Json;
+using Microsoft.OpenApi.Models;
 using PersonalDiary.Persistence;
 using PersonalDiary.Api.Filters;
 using PersonalDiary.Api.Security;
+using PersonalDiary.Api.Middlewares;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
@@ -29,7 +31,6 @@ namespace PersonalDiary.Api
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen();
             builder.Services.AddControllers()
                 .AddNewtonsoftJson(options =>
                 {
@@ -64,30 +65,63 @@ namespace PersonalDiary.Api
 
             //Auth
             builder.Services.Configure<TokenManagement>(builder.Configuration.GetSection("TokenManagement"));
-            builder.Services.AddAuthentication(x =>
+            builder.Services.AddAuthentication(options =>
             {
-                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            }).AddJwtBearer(x =>
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+            .AddJwtBearer(options =>
             {
-                x.RequireHttpsMetadata = false;
-                x.SaveToken = true;
-                x.TokenValidationParameters = new TokenValidationParameters
+                options.UseSecurityTokenValidators = true; //В .net 8 по дефолту используются JsonWebToken Без этого флага авторизация не работает
+                options.RequireHttpsMetadata = false;
+                options.SaveToken = true;
+                options.TokenValidationParameters = new TokenValidationParameters
                 {
-                    ValidateIssuer = false,
-                    ValidateAudience = false,
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
                     ValidateLifetime = true,
                     ValidateIssuerSigningKey = true,
                     ValidIssuer = builder.Configuration["TokenManagement:Issuer"],
                     ValidAudience = builder.Configuration["TokenManagement:Audience"],
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["TokenManagement:Secret"]!))
+                    IssuerSigningKey = new SymmetricSecurityKey(
+                        Encoding.UTF8.GetBytes(builder.Configuration["TokenManagement:Secret"]!))
                 };
             });
             builder.Services.AddTransient<IJwtTokenProvider, JwtTokenProvider>();
+            builder.Services.AddScoped<ICurrentUser, CurrentUser>();
+            builder.Services.AddTransient<CurrentUserMiddleware>();
 
 
             builder.Services.AddScoped<CustomExceptionFilter>();
-            builder.Services.AddSwaggerGen(option => option.CustomSchemaIds(type => type.FullName.Replace("+", ".")));
+            builder.Services.AddSwaggerGen(options =>
+            {
+                options.CustomSchemaIds(type => type.FullName.Replace("+", "."));
+                options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                {
+                    Name = "Authorization",
+                    Type = SecuritySchemeType.Http,
+                    Scheme = "Bearer",
+                    BearerFormat = "JWT",
+                    In = ParameterLocation.Header,
+                    Description = "Введите JWT токен, используя формат: Bearer {токен}"
+                });
+                options.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
+                    {
+                        new OpenApiSecurityScheme
+                        {
+                            Reference = new OpenApiReference
+                            {
+                                Type = ReferenceType.SecurityScheme,
+                                Id = "Bearer"
+                            }
+                        },
+                        Array.Empty<string>()
+                    }
+                });
+            }
+            );
+
 
             var app = builder.Build();
 
@@ -108,9 +142,10 @@ namespace PersonalDiary.Api
             });
 
             app.UseHttpsRedirection();
-
             app.UseAuthentication();
             app.UseAuthorization();
+            app.UseMiddleware<CurrentUserMiddleware>();
+
             app.MapControllers();
 
             await DatabaseInitializer.MigrateDatabase(app.Services);

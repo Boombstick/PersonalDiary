@@ -17,7 +17,7 @@ namespace PersonalDiary.Application.Feature.Food
             public byte VibeRating { get; set; }
             public byte FoodRating { get; set; }
             public float Rating { get; set; }
-            public string Description { get; set; }
+            public string Comment { get; set; }
         }
         public class Validator : AbstractValidator<Query>
         {
@@ -40,10 +40,10 @@ namespace PersonalDiary.Application.Feature.Food
                 {
                     FoodRating = x.FoodRating,
                     VibeRating = x.VibeRating,
-                    Description = x.Description,
+                    Comment = x.Comment,
                     FoodPlaceId = x.FoodPlaceId,
                     ServiceRating = x.ServiceRating,
-                    Rating = x.Rating,
+                    Rating = (x.VibeRating + x.FoodRating + x.ServiceRating) / 3,
                 }).ToList();
             }
         }

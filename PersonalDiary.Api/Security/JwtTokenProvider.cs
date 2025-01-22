@@ -23,11 +23,10 @@ namespace PersonalDiary.Api.Security
                 audience: _tokenManagement.Audience,
                 claims:
                 [
-                    new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
+                    new Claim("id", user.Id.ToString()),
                     new Claim("name", user.UserName!)
                 ],
-                notBefore: DateTime.UtcNow,
-                expires: DateTime.UtcNow.AddHours(1),
+                expires: DateTime.Now.AddHours(5),
                 signingCredentials: new SigningCredentials(_tokenManagement.SecurityKey, SecurityAlgorithms.HmacSha256)
             );
             return new JwtSecurityTokenHandler().WriteToken(jwtToken);

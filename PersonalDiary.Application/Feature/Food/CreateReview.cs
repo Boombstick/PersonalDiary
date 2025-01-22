@@ -2,6 +2,7 @@
 using FluentValidation;
 using PersonalDiary.Domain.Models.Reviews;
 using PersonalDiary.Domain.Repositories;
+using PersonalDiary.Application.Interfaces;
 
 namespace PersonalDiary.Application.Feature.Food
 {
@@ -13,7 +14,7 @@ namespace PersonalDiary.Application.Feature.Food
             public byte ServiceRating { get; set; }
             public byte VibeRating { get; set; }
             public byte FoodRating { get; set; }
-            public string Description { get; set; }
+            public string Comment { get; set; }
         }
         public class Validator : AbstractValidator<Command>
         {
@@ -25,19 +26,23 @@ namespace PersonalDiary.Application.Feature.Food
         public class Handler : IRequestHandler<Command, long>
         {
             private readonly IRatingRepository _ratingRepository;
-            public Handler(IRatingRepository ratingRepository)
+            private readonly ICurrentUser _currentUser;
+            public Handler(IRatingRepository ratingRepository, ICurrentUser currentUser)
             {
                 _ratingRepository = ratingRepository;
+                _currentUser = currentUser;
             }
             public async Task<long> Handle(Command request, CancellationToken cancellationToken)
             {
                 var review = new FoodPlaceReview
                 {
-                    Description = request.Description,
+                    Comment = request.Comment,
                     FoodPlaceId = request.FoodPlaceId,
                     FoodRating = request.FoodRating,
                     ServiceRating = request.ServiceRating,
                     VibeRating = request.VibeRating,
+                    AuthorId = _currentUser.Id,
+                    CreatedAt = DateTime.UtcNow,
                 };
                 await _ratingRepository.AddReview(review);
                 return review.Id;

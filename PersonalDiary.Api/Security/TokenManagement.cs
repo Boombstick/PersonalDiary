@@ -10,7 +10,7 @@ namespace PersonalDiary.Api.Security
         /// </summary>
         public string Secret { get; set; }
 
-        public SymmetricSecurityKey SecurityKey => new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Secret));
+        public SymmetricSecurityKey SecurityKey => new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Secret)!);
 
         public string Issuer { get; set; }
 

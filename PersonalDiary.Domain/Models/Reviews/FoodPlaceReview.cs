@@ -1,4 +1,5 @@
-﻿using PersonalDiary.Domain.Models.FoodPlaces;
+﻿using PersonalDiary.Domain.Models.Users;
+using PersonalDiary.Domain.Models.FoodPlaces;
 
 namespace PersonalDiary.Domain.Models.Reviews
 {
@@ -7,11 +8,9 @@ namespace PersonalDiary.Domain.Models.Reviews
         public byte FoodRating { get; set; }
         public byte VibeRating { get; set; }
         public byte ServiceRating { get; set; }
-        public override float Rating
-        {
-            get { return (float)(FoodRating + VibeRating + ServiceRating) / 3; }
-        }
         public Guid FoodPlaceId { get; set; }
         public FoodPlace FoodPlace { get; set; }
+        public User Author { get; set; }
+        public Guid AuthorId { get; set; }
     }
 }
