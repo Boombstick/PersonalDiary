@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using FluentValidation;
+using PersonalDiary.Application.Common;
 using PersonalDiary.Domain.Repositories;
 using PersonalDiary.Domain.Models.FoodPlaces;
 
@@ -20,6 +21,7 @@ namespace PersonalDiary.Application.Feature.Food
             public string Description { get; set; }
             public Cousine Cousine { get; set; }
             public DateTime UpdateAt { get; set; }
+            public ICollection<ReviewModel> Reviews { get; set; }
         }
         public class Validator : AbstractValidator<Query>
         {
@@ -41,12 +43,13 @@ namespace PersonalDiary.Application.Feature.Food
                 var model = new Model
                 {
                     Id = foodPlace.Id,
-                    Address = foodPlace.Address,
-                    City = foodPlace.City.Name,
-                    Cousine = foodPlace.Cousine,
-                    Description = foodPlace.Description,
                     Name = foodPlace.Name,
+                    City = foodPlace.City.Name,
+                    Address = foodPlace.Address,
+                    Cousine = foodPlace.Cousine,
                     UpdateAt = foodPlace.UpdatedAt,
+                    Description = foodPlace.Description,
+                    Reviews = foodPlace.Reviews.Select(x => new ReviewModel { Comment = x.Comment, CreatedAt = x.CreatedAt }).ToList()
                 };
                 return model;
             }

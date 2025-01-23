@@ -19,7 +19,10 @@ namespace PersonalDiary.Persistence.Repositories
 
         public async Task<FoodPlace> GetDetails(Guid id)
         {
-            return await _diaryDbContext.FoodPlaces.Include(x => x.City).FirstOrDefaultAsync(x => x.Id == id) ?? throw new KeyNotFoundException();
+            return await _diaryDbContext.FoodPlaces
+                .Include(x => x.City)
+                .Include(x => x.Reviews.OrderByDescending(x => x.CreatedAt).Take(2))
+                .FirstOrDefaultAsync(x => x.Id == id) ?? throw new KeyNotFoundException();
         }
         public async Task<IReadOnlyList<FoodPlace>> GetPagedList(
             int page,

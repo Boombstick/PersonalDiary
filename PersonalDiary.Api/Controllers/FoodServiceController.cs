@@ -15,14 +15,15 @@ namespace PersonalDiary.Api.Controllers
             return Ok(id);
         }
         [HttpGet("{id}")]
-        public async Task<IActionResult> DetailsOfTask(Guid id)
+        public async Task<IActionResult> DetailsOfFoodPlace(Guid id)
         {
             return Ok(await Mediator.Send(new Details.Query { Id = id }));
         }
 
-        [HttpDelete]
-        public async Task<IActionResult> DeleteTask()
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteFoodPlace(Guid id)
         {
+
             return Ok();
         }
 

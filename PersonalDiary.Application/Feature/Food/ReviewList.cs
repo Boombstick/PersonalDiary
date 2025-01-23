@@ -1,12 +1,13 @@
 ﻿using MediatR;
 using FluentValidation;
+using PersonalDiary.Application.Common;
 using PersonalDiary.Domain.Repositories;
 
 namespace PersonalDiary.Application.Feature.Food
 {
     public class ReviewList
     {
-        public class Query : IRequest<IReadOnlyList<Model>>
+        public class Query : PagedListQueryBase, IRequest<IReadOnlyList<Model>>
         {
             public Guid FoodPlaceId { get; set; }
         }
@@ -16,7 +17,6 @@ namespace PersonalDiary.Application.Feature.Food
             public byte ServiceRating { get; set; }
             public byte VibeRating { get; set; }
             public byte FoodRating { get; set; }
-            public float Rating { get; set; }
             public string Comment { get; set; }
         }
         public class Validator : AbstractValidator<Query>
@@ -35,15 +35,14 @@ namespace PersonalDiary.Application.Feature.Food
             }
             public async Task<IReadOnlyList<Model>> Handle(Query request, CancellationToken cancellationToken)
             {
-                var reviews = await _ratingRepository.GetAllReviews(request.FoodPlaceId);
+                var reviews = await _ratingRepository.GetPagedList(request.Page, request.PageSize, request.FoodPlaceId);
                 return reviews.Select(x => new Model
                 {
                     FoodRating = x.FoodRating,
                     VibeRating = x.VibeRating,
                     Comment = x.Comment,
                     FoodPlaceId = x.FoodPlaceId,
-                    ServiceRating = x.ServiceRating,
-                    Rating = (x.VibeRating + x.FoodRating + x.ServiceRating) / 3,
+                    ServiceRating = x.ServiceRating
                 }).ToList();
             }
         }

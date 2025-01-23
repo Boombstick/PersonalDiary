@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using PersonalDiary.Domain.Models.FoodPlaces;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace PersonalDiary.Persistence.Configurations
 {
@@ -13,6 +13,11 @@ namespace PersonalDiary.Persistence.Configurations
             builder.HasOne(x => x.City)
                 .WithMany()
                 .HasForeignKey(x => x.CityId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            builder.HasMany(x => x.Reviews)
+                .WithOne(x => x.FoodPlace)
+                .HasForeignKey(x => x.FoodPlaceId)
                 .OnDelete(DeleteBehavior.Cascade);
         }
     }

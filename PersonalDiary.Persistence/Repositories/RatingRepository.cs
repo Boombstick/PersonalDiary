@@ -21,7 +21,7 @@ namespace PersonalDiary.Persistence.Repositories
             await UpdateFoodPlaceRating(place);
             return review.Id;
         }
-        public async Task<IReadOnlyCollection<FoodPlaceReview>> GetAllReviews(Guid foodPlaceId)
+        public async Task<IReadOnlyCollection<FoodPlaceReview>> GetPagedList(int page, int pageSize,Guid foodPlaceId)
         {
             return await _diaryDbContext.FoodPlaceReviews.Where(x => x.FoodPlaceId == foodPlaceId).ToListAsync();
         }
@@ -38,7 +38,6 @@ namespace PersonalDiary.Persistence.Repositories
             foodPlace.AverageRating = averageRating;
             foodPlace.ReviewCount = reviewCount;
             await _diaryDbContext.SaveChangesAsync();
-
         }
     }
 }

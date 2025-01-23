@@ -25,13 +25,15 @@ namespace PersonalDiary.Application.Feature.Food
             public string Description { get; set; }
             public Cousine Cousine { get; set; }
             public DateTime UpdatedAt { get; set; }
+            public long ReviewsCount { get; set; }
+            public float AverageRating { get; set; }
 
         }
         public class Validator : AbstractValidator<Query>
         {
             public Validator()
             {
-                
+
             }
         }
         public class Handler : IRequestHandler<Query, IReadOnlyList<Model>>
@@ -57,7 +59,9 @@ namespace PersonalDiary.Application.Feature.Food
                     Cousine = foodPlace.Cousine,
                     Description = foodPlace.Description,
                     Name = foodPlace.Name,
-                    UpdatedAt = foodPlace.UpdatedAt
+                    UpdatedAt = foodPlace.UpdatedAt,
+                    ReviewsCount = foodPlace.ReviewCount,
+                    AverageRating = foodPlace.AverageRating,
                 }).ToList();
             }
         }
