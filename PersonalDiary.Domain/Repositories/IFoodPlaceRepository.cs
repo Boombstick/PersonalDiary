@@ -1,4 +1,4 @@
-﻿using PersonalDiary.Domain.Models.FoodPlaces;
+﻿using PersonalDiary.Domain.Models.Places.FoodPlaces;
 
 namespace PersonalDiary.Domain.Repositories
 {
@@ -6,6 +6,6 @@ namespace PersonalDiary.Domain.Repositories
     {
         Task Create(FoodPlace foodPlace);
         Task<FoodPlace> GetDetails(Guid id);
-        Task<IReadOnlyList<FoodPlace>> GetPagedList(int page, int pageSize, string searchTerm, long? cityId, Cousine? cuisineId);
+        Task<IReadOnlyList<FoodPlace>> GetPagedList(int page, int pageSize, string searchTerm, long? cityId, FoodPlaceType? cuisineId);
     }
 }

@@ -1,10 +1,10 @@
 ﻿using MediatR;
 using FluentValidation;
-using PersonalDiary.Domain.Models.Reviews;
 using PersonalDiary.Domain.Repositories;
+using PersonalDiary.Domain.Models.Reviews;
 using PersonalDiary.Application.Interfaces;
 
-namespace PersonalDiary.Application.Feature.FoodPlaces
+namespace PersonalDiary.Application.Feature.Places.FoodPlaces
 {
     public class CreateReview
     {

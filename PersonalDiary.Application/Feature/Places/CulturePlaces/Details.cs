@@ -2,9 +2,9 @@
 using FluentValidation;
 using PersonalDiary.Application.Common;
 using PersonalDiary.Domain.Repositories;
-using PersonalDiary.Domain.Models.FoodPlaces;
+using PersonalDiary.Domain.Models.Places.CulturePlaces;
 
-namespace PersonalDiary.Application.Feature.FoodPlaces
+namespace PersonalDiary.Application.Feature.Places.CulturePlaces
 {
     public class Details
     {
@@ -12,16 +12,8 @@ namespace PersonalDiary.Application.Feature.FoodPlaces
         {
             public Guid Id { get; set; }
         }
-        public class Model
+        public class Model : BasePlaceDetailsModel<CulturePlaceType>
         {
-            public Guid Id { get; set; }
-            public string Name { get; set; }
-            public string Address { get; set; }
-            public string City { get; set; }
-            public string Description { get; set; }
-            public Cousine Cousine { get; set; }
-            public DateTime UpdateAt { get; set; }
-            public ICollection<ReviewModel> Reviews { get; set; }
         }
         public class Validator : AbstractValidator<Query>
         {
@@ -32,22 +24,22 @@ namespace PersonalDiary.Application.Feature.FoodPlaces
         }
         public class Handler : IRequestHandler<Query, Model>
         {
-            private IFoodPlaceRepository _foodPlaceRepository;
-            public Handler(IFoodPlaceRepository foodPlaceRepository)
+            private readonly ICulturePlaceRepository _culturePlaceRepository;
+            public Handler(ICulturePlaceRepository culturePlaceRepository)
             {
-                _foodPlaceRepository = foodPlaceRepository;
+                _culturePlaceRepository = culturePlaceRepository;
             }
             public async Task<Model> Handle(Query request, CancellationToken cancellationToken)
             {
-                var foodPlace = await _foodPlaceRepository.GetDetails(request.Id);
+                var foodPlace = await _culturePlaceRepository.GetDetails(request.Id);
                 var model = new Model
                 {
                     Id = foodPlace.Id,
                     Name = foodPlace.Name,
                     City = foodPlace.City.Name,
                     Address = foodPlace.Address,
-                    Cousine = foodPlace.Type,
-                    UpdateAt = foodPlace.UpdatedAt,
+                    Type = foodPlace.Type,
+                    UpdatedAt = foodPlace.UpdatedAt,
                     Description = foodPlace.Description,
                     Reviews = foodPlace.Reviews.Select(x => new ReviewModel { Comment = x.Comment, CreatedAt = x.CreatedAt }).ToList()
                 };

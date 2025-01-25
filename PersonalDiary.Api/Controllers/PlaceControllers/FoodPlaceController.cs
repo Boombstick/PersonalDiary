@@ -1,12 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
-using PersonalDiary.Application.Feature.FoodPlaces;
+using PersonalDiary.Application.Feature.Places.FoodPlaces;
 
-namespace PersonalDiary.Api.Controllers
+namespace PersonalDiary.Api.Controllers.PlaceControllers
 {
     [ApiController]
-    [Route("api/food")]
-    public class FoodServiceController : BaseValidatedController
+    [Route("api/foodPlace")]
+    public class FoodPlaceController : BaseValidatedController
     {
         [HttpPost]
         public async Task<IActionResult> CreateFoodPlace([FromBody] Create.Command command)

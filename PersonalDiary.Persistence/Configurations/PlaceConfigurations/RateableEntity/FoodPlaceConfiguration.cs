@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using PersonalDiary.Domain.Models.FoodPlaces;
+using PersonalDiary.Domain.Models.Places.FoodPlaces;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace PersonalDiary.Persistence.Configurations
+namespace PersonalDiary.Persistence.Configurations.PlaceConfigurations.RateableEntity
 {
     public class FoodPlaceConfiguration : IEntityTypeConfiguration<FoodPlace>
     {
@@ -16,7 +16,7 @@ namespace PersonalDiary.Persistence.Configurations
                 .OnDelete(DeleteBehavior.Cascade);
 
             builder.HasMany(x => x.Reviews)
-                .WithOne(x =>x.FoodPlace)
+                .WithOne(x => x.FoodPlace)
                 .HasForeignKey(x => x.FoodPlaceId)
                 .OnDelete(DeleteBehavior.Cascade);
         }

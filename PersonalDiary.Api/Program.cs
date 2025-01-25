@@ -13,10 +13,11 @@ using PersonalDiary.Domain.Repositories;
 using PersonalDiary.Domain.Models.Users;
 using PersonalDiary.Application.Interfaces;
 using PersonalDiary.Persistence.Repositories;
-using PersonalDiary.Application.Feature.Food;
 using PersonalDiary.Application.Infrastructure;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using PersonalDiary.Application.Feature.Places.FoodPlaces;
 using PersonalDiary.Persistence.Repositories.DictionaryRepository;
+using PersonalDiary.Persistence.Repositories.PlaceRepositories.RateablePlaces;
 
 namespace PersonalDiary.Api
 {
@@ -39,7 +40,12 @@ namespace PersonalDiary.Api
                 });
 
             // Repositories
+            #region Places
             builder.Services.AddScoped<IFoodPlaceRepository, FoodPlaceRepository>();
+            builder.Services.AddScoped<ICulturePlaceRepository, CulturePlaceRepository>();
+            builder.Services.AddScoped<IWalkPlaceRepository, WalkPlaceRepository>();
+            #endregion
+
             builder.Services.AddScoped<IMyTaskRepository, MyTaskRepository>();
             builder.Services.AddScoped<ITaskBoardRepository, TaskBoardRepository>();
             builder.Services.AddScoped<IDictionaryRepository, DictionaryRepository>();
@@ -72,7 +78,7 @@ namespace PersonalDiary.Api
             })
             .AddJwtBearer(options =>
             {
-                options.UseSecurityTokenValidators = true; //В .net 8 по дефолту используются JsonWebToken Без этого флага авторизация не работает
+                options.UseSecurityTokenValidators = true; //В .net 8 по дефолту используются JsonWebSignature Без этого флага авторизация не работает
                 options.RequireHttpsMetadata = false;
                 options.SaveToken = true;
                 options.TokenValidationParameters = new TokenValidationParameters

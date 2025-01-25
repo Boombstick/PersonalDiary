@@ -1,32 +1,19 @@
 ﻿using MediatR;
 using FluentValidation;
 using PersonalDiary.Domain.Repositories;
-using PersonalDiary.Domain.Models.FoodPlaces;
+using PersonalDiary.Domain.Models.Places.CulturePlaces;
 
-namespace PersonalDiary.Application.Feature.FoodPlaces
+namespace PersonalDiary.Application.Feature.Places.CulturePlaces
 {
     public class PagedList
     {
-        public class Query : IRequest<IReadOnlyList<Model>>
+        public class Query : BasePlacePagedListQuery<CulturePlaceType>, IRequest<IReadOnlyList<Model>>
         {
-            public int Page { get; set; }
-            public int PageSize { get; set; }
-            public long? CityId { get; set; }
-            public Cousine? Cuisine { get; set; }
-            public string? SearchTerm { get; set; }
+
         }
 
-        public class Model
+        public class Model : BasePlaceDetailsModel<CulturePlaceType>
         {
-            public Guid Id { get; set; }
-            public string Name { get; set; }
-            public string Address { get; set; }
-            public string City { get; set; }
-            public string Description { get; set; }
-            public Cousine Cousine { get; set; }
-            public DateTime UpdatedAt { get; set; }
-            public long ReviewsCount { get; set; }
-            public float AverageRating { get; set; }
 
         }
         public class Validator : AbstractValidator<Query>
@@ -38,25 +25,25 @@ namespace PersonalDiary.Application.Feature.FoodPlaces
         }
         public class Handler : IRequestHandler<Query, IReadOnlyList<Model>>
         {
-            private IFoodPlaceRepository _foodPlaceRepository;
-            public Handler(IFoodPlaceRepository foodPlaceRepository)
+            private readonly ICulturePlaceRepository _culturePlaceRepository;
+            public Handler(ICulturePlaceRepository culturePlaceRepository)
             {
-                _foodPlaceRepository = foodPlaceRepository;
+                _culturePlaceRepository = culturePlaceRepository;
             }
             public async Task<IReadOnlyList<Model>> Handle(Query request, CancellationToken cancellationToken)
             {
-                var places = await _foodPlaceRepository.GetPagedList(
+                var places = await _culturePlaceRepository.GetPagedList(
                     request.Page,
                     request.PageSize,
                     request.SearchTerm,
                     request.CityId,
-                    request.Cuisine);
+                    request.Type);
                 return places.Select(foodPlace => new Model
                 {
                     Id = foodPlace.Id,
                     Address = foodPlace.Address,
                     City = foodPlace.City.Name,
-                    Cousine = foodPlace.Type,
+                    Type = foodPlace.Type,
                     Description = foodPlace.Description,
                     Name = foodPlace.Name,
                     UpdatedAt = foodPlace.UpdatedAt,

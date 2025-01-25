@@ -20,7 +20,7 @@ namespace PersonalDiary.Persistence.Repositories
             return await _dbSet.FindAsync(id);
         }
 
-        public async Task DeleteAsync<T>(T id) where T : notnull
+        private async Task DeleteAsync<T>(T id) where T : notnull
         {
             var entity = await GetByIdAsync(id) ?? throw new KeyNotFoundException();
             _dbSet.Remove(entity);

@@ -1,21 +1,30 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using System.Text.RegularExpressions;
 using PersonalDiary.Domain.Models.Users;
 using PersonalDiary.Domain.Models.MyTask;
 using PersonalDiary.Domain.Models.Reviews;
-using PersonalDiary.Domain.Models.FoodPlaces;
 using PersonalDiary.Domain.Models.Dictionaries;
+using PersonalDiary.Domain.Models.Places.FoodPlaces;
+using PersonalDiary.Domain.Models.Places.WalkPlaces;
+using PersonalDiary.Domain.Models.Places.CulturePlaces;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.AspNetCore.Identity;
 
 namespace PersonalDiary.Persistence
 {
     public class DiaryDbContext : IdentityDbContext<User, Role, Guid>
     {
         public DbSet<MyTask> Tasks { get; set; }
-        public DbSet<FoodPlace> FoodPlaces { get; set; }
         public DbSet<TaskBoard> TaskBoards { get; set; }
         public DbSet<City> Cities { get; set; }
+
+        public DbSet<WalkPlace> WalkPlaces { get; set; }
+        public DbSet<WalkPlaceReview> WalkPlacesReviews { get; set; }
+
+        public DbSet<CulturePlace> CulturePlaces { get; set; }
+        public DbSet<CulturePlaceReview> CulturePlaceReviews { get; set; }
+
+        public DbSet<FoodPlace> FoodPlaces { get; set; }
         public DbSet<FoodPlaceReview> FoodPlaceReviews { get; set; }
 
         public DiaryDbContext(DbContextOptions options) : base(options)

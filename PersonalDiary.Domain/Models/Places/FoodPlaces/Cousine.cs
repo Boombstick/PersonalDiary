@@ -1,6 +1,6 @@
-﻿namespace PersonalDiary.Domain.Models.FoodPlaces
+﻿namespace PersonalDiary.Domain.Models.Places.FoodPlaces
 {
-    public enum Cousine
+    public enum FoodPlaceType
     {
         Russian = 1,
         Georgian = 2,

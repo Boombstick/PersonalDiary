@@ -1,19 +1,15 @@
 ﻿using MediatR;
 using FluentValidation;
 using PersonalDiary.Domain.Repositories;
-using PersonalDiary.Domain.Models.FoodPlaces;
+using PersonalDiary.Domain.Models.Places.WalkPlaces;
 
-namespace PersonalDiary.Application.Feature.FoodPlaces
+namespace PersonalDiary.Application.Feature.Places.WalkPlaces
 {
     public class Create
     {
-        public class Command : IRequest<Guid>
+        public class Command : BasePlaceCreateCommand<WalkPlaceType>, IRequest<Guid>
         {
-            public string Name { get; set; }
-            public string Description { get; set; }
-            public Cousine Cousine { get; set; }
-            public long CityId { get; set; }
-            public string Adress { get; set; }
+
         }
         public class Validator : AbstractValidator<Command>
         {
@@ -21,26 +17,26 @@ namespace PersonalDiary.Application.Feature.FoodPlaces
         }
         public class Handler : IRequestHandler<Command, Guid>
         {
-            private readonly IFoodPlaceRepository _foodPlaceRepository;
-            public Handler(IFoodPlaceRepository foodPlaceRepository)
+            private readonly IWalkPlaceRepository _walkPlaceRepository;
+            public Handler(IWalkPlaceRepository walkPlaceRepository)
             {
-                _foodPlaceRepository = foodPlaceRepository;
+                _walkPlaceRepository = walkPlaceRepository;
             }
             public async Task<Guid> Handle(Command request, CancellationToken cancellationToken)
             {
                 var guid = Guid.NewGuid();
-                FoodPlace place = new FoodPlace
+                WalkPlace place = new WalkPlace
                 {
                     Id = guid,
                     Name = request.Name,
                     CityId = request.CityId,
                     Address = request.Adress,
-                    Type = request.Cousine,
+                    Type = request.Type,
                     UpdatedAt = DateTime.UtcNow,
                     CreatedAt = DateTime.UtcNow,
                     Description = request.Description,
                 };
-                await _foodPlaceRepository.Create(place);
+                await _walkPlaceRepository.Create(place);
                 return guid;
             }
         }

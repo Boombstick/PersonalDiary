@@ -1,10 +1,10 @@
 ﻿using PersonalDiary.Domain.Repositories;
 using PersonalDiary.Domain.Models.Reviews;
-using PersonalDiary.Domain.Models.FoodPlaces;
+using PersonalDiary.Domain.Models.Places.FoodPlaces;
 
-namespace PersonalDiary.Persistence.Repositories
+namespace PersonalDiary.Persistence.Repositories.PlaceRepositories.RateablePlaces
 {
-    public class FoodPlaceRepository : RateableEntityRepository<FoodPlace, FoodPlaceReview, Cousine>, IFoodPlaceRepository
+    public class FoodPlaceRepository : RateableEntityRepository<FoodPlace, FoodPlaceReview, FoodPlaceType>, IFoodPlaceRepository
     {
         public FoodPlaceRepository(DiaryDbContext diaryDbContext) : base(diaryDbContext)
         {
@@ -23,7 +23,7 @@ namespace PersonalDiary.Persistence.Repositories
             int pageSize,
             string searchTerm,
             long? cityId,
-            Cousine? cuisine)
+            FoodPlaceType? cuisine)
         {
             return await base.GetPagedList(page, pageSize, searchTerm, cityId, cuisine);
         }

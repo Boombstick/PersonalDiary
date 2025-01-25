@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PersonalDiary.Domain.Repositories;
 using PersonalDiary.Domain.Models.Reviews;
-using PersonalDiary.Domain.Models.FoodPlaces;
+using PersonalDiary.Domain.Models.Places.FoodPlaces;
 
 namespace PersonalDiary.Persistence.Repositories
 {

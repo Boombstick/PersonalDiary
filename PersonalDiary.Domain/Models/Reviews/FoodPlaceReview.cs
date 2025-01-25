@@ -1,5 +1,4 @@
-﻿using PersonalDiary.Domain.Models.Users;
-using PersonalDiary.Domain.Models.FoodPlaces;
+﻿using PersonalDiary.Domain.Models.Places.FoodPlaces;
 
 namespace PersonalDiary.Domain.Models.Reviews
 {
@@ -10,7 +9,5 @@ namespace PersonalDiary.Domain.Models.Reviews
         public byte ServiceRating { get; set; }
         public Guid FoodPlaceId { get; set; }
         public FoodPlace FoodPlace { get; set; }
-        public User Author { get; set; }
-        public Guid AuthorId { get; set; }
     }
 }

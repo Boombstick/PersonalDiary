@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using PersonalDiary.Persistence;
@@ -11,9 +12,11 @@ using PersonalDiary.Persistence;
 namespace PersonalDiary.Persistence.Migrations
 {
     [DbContext(typeof(DiaryDbContext))]
-    partial class DiaryDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250125131006_AddCultureAndWalkPlaces")]
+    partial class AddCultureAndWalkPlaces
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -152,6 +155,61 @@ namespace PersonalDiary.Persistence.Migrations
                     b.ToTable("user_tokens", (string)null);
                 });
 
+            modelBuilder.Entity("PersonalDiary.Domain.Models.CulturePlaces.CulturePlace", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
+
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("address");
+
+                    b.Property<float>("AverageRating")
+                        .HasColumnType("real")
+                        .HasColumnName("average_rating");
+
+                    b.Property<long>("CityId")
+                        .HasColumnType("bigint")
+                        .HasColumnName("city_id");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created_at");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("description");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("name");
+
+                    b.Property<long>("ReviewCount")
+                        .HasColumnType("bigint")
+                        .HasColumnName("review_count");
+
+                    b.Property<int>("Type")
+                        .HasColumnType("integer")
+                        .HasColumnName("type");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("updated_at");
+
+                    b.HasKey("Id")
+                        .HasName("pk_culture_places");
+
+                    b.HasIndex("CityId")
+                        .HasDatabaseName("ix_culture_places_city_id");
+
+                    b.ToTable("culture_places");
+                });
+
             modelBuilder.Entity("PersonalDiary.Domain.Models.Dictionaries.City", b =>
                 {
                     b.Property<long>("Id")
@@ -170,6 +228,61 @@ namespace PersonalDiary.Persistence.Migrations
                         .HasName("pk_cities");
 
                     b.ToTable("cities");
+                });
+
+            modelBuilder.Entity("PersonalDiary.Domain.Models.FoodPlaces.FoodPlace", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
+
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("address");
+
+                    b.Property<float>("AverageRating")
+                        .HasColumnType("real")
+                        .HasColumnName("average_rating");
+
+                    b.Property<long>("CityId")
+                        .HasColumnType("bigint")
+                        .HasColumnName("city_id");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created_at");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("description");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("name");
+
+                    b.Property<long>("ReviewCount")
+                        .HasColumnType("bigint")
+                        .HasColumnName("review_count");
+
+                    b.Property<int>("Type")
+                        .HasColumnType("integer")
+                        .HasColumnName("type");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("updated_at");
+
+                    b.HasKey("Id")
+                        .HasName("pk_food_places");
+
+                    b.HasIndex("CityId")
+                        .HasDatabaseName("ix_food_places_city_id");
+
+                    b.ToTable("food_places");
                 });
 
             modelBuilder.Entity("PersonalDiary.Domain.Models.MyTask.MyTask", b =>
@@ -238,171 +351,6 @@ namespace PersonalDiary.Persistence.Migrations
                     b.ToTable("task_boards");
                 });
 
-            modelBuilder.Entity("PersonalDiary.Domain.Models.Places.CulturePlaces.CulturePlace", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid")
-                        .HasColumnName("id");
-
-                    b.Property<string>("Address")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("address");
-
-                    b.Property<float>("AverageRating")
-                        .HasColumnType("real")
-                        .HasColumnName("average_rating");
-
-                    b.Property<long>("CityId")
-                        .HasColumnType("bigint")
-                        .HasColumnName("city_id");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("created_at");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("description");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("name");
-
-                    b.Property<long>("ReviewCount")
-                        .HasColumnType("bigint")
-                        .HasColumnName("review_count");
-
-                    b.Property<int>("Type")
-                        .HasColumnType("integer")
-                        .HasColumnName("type");
-
-                    b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("updated_at");
-
-                    b.HasKey("Id")
-                        .HasName("pk_culture_places");
-
-                    b.HasIndex("CityId")
-                        .HasDatabaseName("ix_culture_places_city_id");
-
-                    b.ToTable("culture_places");
-                });
-
-            modelBuilder.Entity("PersonalDiary.Domain.Models.Places.FoodPlaces.FoodPlace", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid")
-                        .HasColumnName("id");
-
-                    b.Property<string>("Address")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("address");
-
-                    b.Property<float>("AverageRating")
-                        .HasColumnType("real")
-                        .HasColumnName("average_rating");
-
-                    b.Property<long>("CityId")
-                        .HasColumnType("bigint")
-                        .HasColumnName("city_id");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("created_at");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("description");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("name");
-
-                    b.Property<long>("ReviewCount")
-                        .HasColumnType("bigint")
-                        .HasColumnName("review_count");
-
-                    b.Property<int>("Type")
-                        .HasColumnType("integer")
-                        .HasColumnName("type");
-
-                    b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("updated_at");
-
-                    b.HasKey("Id")
-                        .HasName("pk_food_places");
-
-                    b.HasIndex("CityId")
-                        .HasDatabaseName("ix_food_places_city_id");
-
-                    b.ToTable("food_places");
-                });
-
-            modelBuilder.Entity("PersonalDiary.Domain.Models.Places.WalkPlaces.WalkPlace", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid")
-                        .HasColumnName("id");
-
-                    b.Property<string>("Address")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("address");
-
-                    b.Property<float>("AverageRating")
-                        .HasColumnType("real")
-                        .HasColumnName("average_rating");
-
-                    b.Property<long>("CityId")
-                        .HasColumnType("bigint")
-                        .HasColumnName("city_id");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("created_at");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("description");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("name");
-
-                    b.Property<long>("ReviewCount")
-                        .HasColumnType("bigint")
-                        .HasColumnName("review_count");
-
-                    b.Property<int>("Type")
-                        .HasColumnType("integer")
-                        .HasColumnName("type");
-
-                    b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("updated_at");
-
-                    b.HasKey("Id")
-                        .HasName("pk_walk_places");
-
-                    b.HasIndex("CityId")
-                        .HasDatabaseName("ix_walk_places_city_id");
-
-                    b.ToTable("walk_places");
-                });
-
             modelBuilder.Entity("PersonalDiary.Domain.Models.Reviews.CulturePlaceReview", b =>
                 {
                     b.Property<long>("Id")
@@ -411,10 +359,6 @@ namespace PersonalDiary.Persistence.Migrations
                         .HasColumnName("id");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
-
-                    b.Property<Guid>("AuthorId")
-                        .HasColumnType("uuid")
-                        .HasColumnName("author_id");
 
                     b.Property<string>("Comment")
                         .IsRequired()
@@ -431,9 +375,6 @@ namespace PersonalDiary.Persistence.Migrations
 
                     b.HasKey("Id")
                         .HasName("pk_culture_place_reviews");
-
-                    b.HasIndex("AuthorId")
-                        .HasDatabaseName("ix_culture_place_reviews_author_id");
 
                     b.HasIndex("CulturePlaceId")
                         .HasDatabaseName("ix_culture_place_reviews_culture_place_id");
@@ -489,48 +430,6 @@ namespace PersonalDiary.Persistence.Migrations
                         .HasDatabaseName("ix_food_place_reviews_food_place_id");
 
                     b.ToTable("food_place_reviews");
-                });
-
-            modelBuilder.Entity("PersonalDiary.Domain.Models.Reviews.WalkPlaceReview", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasColumnName("id");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
-
-                    b.Property<Guid>("AuthorId")
-                        .HasColumnType("uuid")
-                        .HasColumnName("author_id");
-
-                    b.Property<string>("Comment")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("comment");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("created_at");
-
-                    b.Property<byte>("VibeRating")
-                        .HasColumnType("smallint")
-                        .HasColumnName("vibe_rating");
-
-                    b.Property<Guid>("WalkPlaceId")
-                        .HasColumnType("uuid")
-                        .HasColumnName("walk_place_id");
-
-                    b.HasKey("Id")
-                        .HasName("pk_walk_places_reviews");
-
-                    b.HasIndex("AuthorId")
-                        .HasDatabaseName("ix_walk_places_reviews_author_id");
-
-                    b.HasIndex("WalkPlaceId")
-                        .HasDatabaseName("ix_walk_places_reviews_walk_place_id");
-
-                    b.ToTable("walk_places_reviews");
                 });
 
             modelBuilder.Entity("PersonalDiary.Domain.Models.Users.Role", b =>
@@ -646,6 +545,53 @@ namespace PersonalDiary.Persistence.Migrations
                     b.ToTable("users", (string)null);
                 });
 
+            modelBuilder.Entity("PersonalDiary.Domain.Models.WalkPlaces.WalkPlace", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
+
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("address");
+
+                    b.Property<long>("CityId")
+                        .HasColumnType("bigint")
+                        .HasColumnName("city_id");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created_at");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("description");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("name");
+
+                    b.Property<int>("Type")
+                        .HasColumnType("integer")
+                        .HasColumnName("type");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("updated_at");
+
+                    b.HasKey("Id")
+                        .HasName("pk_walk_places");
+
+                    b.HasIndex("CityId")
+                        .HasDatabaseName("ix_walk_places_city_id");
+
+                    b.ToTable("walk_places");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
                 {
                     b.HasOne("PersonalDiary.Domain.Models.Users.Role", null)
@@ -703,6 +649,30 @@ namespace PersonalDiary.Persistence.Migrations
                         .HasConstraintName("fk_asp_net_user_tokens_asp_net_users_user_id");
                 });
 
+            modelBuilder.Entity("PersonalDiary.Domain.Models.CulturePlaces.CulturePlace", b =>
+                {
+                    b.HasOne("PersonalDiary.Domain.Models.Dictionaries.City", "City")
+                        .WithMany()
+                        .HasForeignKey("CityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_culture_places_cities_city_id");
+
+                    b.Navigation("City");
+                });
+
+            modelBuilder.Entity("PersonalDiary.Domain.Models.FoodPlaces.FoodPlace", b =>
+                {
+                    b.HasOne("PersonalDiary.Domain.Models.Dictionaries.City", "City")
+                        .WithMany()
+                        .HasForeignKey("CityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_food_places_cities_city_id");
+
+                    b.Navigation("City");
+                });
+
             modelBuilder.Entity("PersonalDiary.Domain.Models.MyTask.MyTask", b =>
                 {
                     b.HasOne("PersonalDiary.Domain.Models.MyTask.TaskBoard", "Board")
@@ -715,59 +685,14 @@ namespace PersonalDiary.Persistence.Migrations
                     b.Navigation("Board");
                 });
 
-            modelBuilder.Entity("PersonalDiary.Domain.Models.Places.CulturePlaces.CulturePlace", b =>
-                {
-                    b.HasOne("PersonalDiary.Domain.Models.Dictionaries.City", "City")
-                        .WithMany()
-                        .HasForeignKey("CityId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("fk_culture_places_cities_city_id");
-
-                    b.Navigation("City");
-                });
-
-            modelBuilder.Entity("PersonalDiary.Domain.Models.Places.FoodPlaces.FoodPlace", b =>
-                {
-                    b.HasOne("PersonalDiary.Domain.Models.Dictionaries.City", "City")
-                        .WithMany()
-                        .HasForeignKey("CityId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("fk_food_places_cities_city_id");
-
-                    b.Navigation("City");
-                });
-
-            modelBuilder.Entity("PersonalDiary.Domain.Models.Places.WalkPlaces.WalkPlace", b =>
-                {
-                    b.HasOne("PersonalDiary.Domain.Models.Dictionaries.City", "City")
-                        .WithMany()
-                        .HasForeignKey("CityId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("fk_walk_places_cities_city_id");
-
-                    b.Navigation("City");
-                });
-
             modelBuilder.Entity("PersonalDiary.Domain.Models.Reviews.CulturePlaceReview", b =>
                 {
-                    b.HasOne("PersonalDiary.Domain.Models.Users.User", "Author")
-                        .WithMany()
-                        .HasForeignKey("AuthorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("fk_culture_place_reviews_asp_net_users_author_id");
-
-                    b.HasOne("PersonalDiary.Domain.Models.Places.CulturePlaces.CulturePlace", "CulturePlace")
+                    b.HasOne("PersonalDiary.Domain.Models.CulturePlaces.CulturePlace", "CulturePlace")
                         .WithMany("Reviews")
                         .HasForeignKey("CulturePlaceId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
                         .HasConstraintName("fk_culture_place_reviews_culture_places_culture_place_id");
-
-                    b.Navigation("Author");
 
                     b.Navigation("CulturePlace");
                 });
@@ -781,7 +706,7 @@ namespace PersonalDiary.Persistence.Migrations
                         .IsRequired()
                         .HasConstraintName("fk_food_place_reviews_asp_net_users_author_id");
 
-                    b.HasOne("PersonalDiary.Domain.Models.Places.FoodPlaces.FoodPlace", "FoodPlace")
+                    b.HasOne("PersonalDiary.Domain.Models.FoodPlaces.FoodPlace", "FoodPlace")
                         .WithMany("Reviews")
                         .HasForeignKey("FoodPlaceId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -793,45 +718,31 @@ namespace PersonalDiary.Persistence.Migrations
                     b.Navigation("FoodPlace");
                 });
 
-            modelBuilder.Entity("PersonalDiary.Domain.Models.Reviews.WalkPlaceReview", b =>
+            modelBuilder.Entity("PersonalDiary.Domain.Models.WalkPlaces.WalkPlace", b =>
                 {
-                    b.HasOne("PersonalDiary.Domain.Models.Users.User", "Author")
+                    b.HasOne("PersonalDiary.Domain.Models.Dictionaries.City", "City")
                         .WithMany()
-                        .HasForeignKey("AuthorId")
+                        .HasForeignKey("CityId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
-                        .HasConstraintName("fk_walk_places_reviews_asp_net_users_author_id");
+                        .HasConstraintName("fk_walk_places_cities_city_id");
 
-                    b.HasOne("PersonalDiary.Domain.Models.Places.WalkPlaces.WalkPlace", "WalkPlace")
-                        .WithMany("Reviews")
-                        .HasForeignKey("WalkPlaceId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("fk_walk_places_reviews_walk_places_walk_place_id");
+                    b.Navigation("City");
+                });
 
-                    b.Navigation("Author");
+            modelBuilder.Entity("PersonalDiary.Domain.Models.CulturePlaces.CulturePlace", b =>
+                {
+                    b.Navigation("Reviews");
+                });
 
-                    b.Navigation("WalkPlace");
+            modelBuilder.Entity("PersonalDiary.Domain.Models.FoodPlaces.FoodPlace", b =>
+                {
+                    b.Navigation("Reviews");
                 });
 
             modelBuilder.Entity("PersonalDiary.Domain.Models.MyTask.TaskBoard", b =>
                 {
                     b.Navigation("Tasks");
-                });
-
-            modelBuilder.Entity("PersonalDiary.Domain.Models.Places.CulturePlaces.CulturePlace", b =>
-                {
-                    b.Navigation("Reviews");
-                });
-
-            modelBuilder.Entity("PersonalDiary.Domain.Models.Places.FoodPlaces.FoodPlace", b =>
-                {
-                    b.Navigation("Reviews");
-                });
-
-            modelBuilder.Entity("PersonalDiary.Domain.Models.Places.WalkPlaces.WalkPlace", b =>
-                {
-                    b.Navigation("Reviews");
                 });
 
             modelBuilder.Entity("PersonalDiary.Domain.Models.Users.User", b =>
