@@ -4,7 +4,7 @@ using PersonalDiary.Application.Common;
 using PersonalDiary.Domain.Repositories;
 using PersonalDiary.Domain.Models.FoodPlaces;
 
-namespace PersonalDiary.Application.Feature.Food
+namespace PersonalDiary.Application.Feature.FoodPlaces
 {
     public class Details
     {
@@ -46,7 +46,7 @@ namespace PersonalDiary.Application.Feature.Food
                     Name = foodPlace.Name,
                     City = foodPlace.City.Name,
                     Address = foodPlace.Address,
-                    Cousine = foodPlace.Cousine,
+                    Cousine = foodPlace.Type,
                     UpdateAt = foodPlace.UpdatedAt,
                     Description = foodPlace.Description,
                     Reviews = foodPlace.Reviews.Select(x => new ReviewModel { Comment = x.Comment, CreatedAt = x.CreatedAt }).ToList()

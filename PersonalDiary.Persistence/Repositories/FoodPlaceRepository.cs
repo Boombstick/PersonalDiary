@@ -1,45 +1,31 @@
-﻿using Microsoft.EntityFrameworkCore;
-using PersonalDiary.Domain.Repositories;
+﻿using PersonalDiary.Domain.Repositories;
+using PersonalDiary.Domain.Models.Reviews;
 using PersonalDiary.Domain.Models.FoodPlaces;
 
 namespace PersonalDiary.Persistence.Repositories
 {
-    public class FoodPlaceRepository : IFoodPlaceRepository
+    public class FoodPlaceRepository : RateableEntityRepository<FoodPlace, FoodPlaceReview, Cousine>, IFoodPlaceRepository
     {
-        private readonly DiaryDbContext _diaryDbContext;
-        public FoodPlaceRepository(DiaryDbContext diaryDbContext)
+        public FoodPlaceRepository(DiaryDbContext diaryDbContext) : base(diaryDbContext)
         {
-            _diaryDbContext = diaryDbContext;
         }
-        public async Task Add(FoodPlace foodPlace)
+        public override async Task Create(FoodPlace foodPlace)
         {
-            _diaryDbContext.FoodPlaces.Add(foodPlace);
-            await _diaryDbContext.SaveChangesAsync();
+            await base.Create(foodPlace);
         }
 
-        public async Task<FoodPlace> GetDetails(Guid id)
+        public override async Task<FoodPlace> GetDetails(Guid id)
         {
-            return await _diaryDbContext.FoodPlaces
-                .Include(x => x.City)
-                .Include(x => x.Reviews.OrderByDescending(x => x.CreatedAt).Take(2))
-                .FirstOrDefaultAsync(x => x.Id == id) ?? throw new KeyNotFoundException();
+            return await base.GetDetails(id);
         }
-        public async Task<IReadOnlyList<FoodPlace>> GetPagedList(
+        public override async Task<IReadOnlyList<FoodPlace>> GetPagedList(
             int page,
             int pageSize,
             string searchTerm,
             long? cityId,
-            long? cuisineId)
+            Cousine? cuisine)
         {
-            var skip = (page - 1) * pageSize;
-            return await _diaryDbContext.FoodPlaces
-                .Include(x => x.City)
-                .Where(x => cityId == null || x.CityId == cityId)
-                .Where(x => cuisineId == null || x.Cousine == (Cousine)cuisineId!)
-                .Where(x => searchTerm == null || x.Name.Contains(searchTerm))
-                .Skip(skip)
-                .Take(pageSize)
-                .ToListAsync();
+            return await base.GetPagedList(page, pageSize, searchTerm, cityId, cuisine);
         }
     }
 }

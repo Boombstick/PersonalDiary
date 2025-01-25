@@ -16,7 +16,7 @@ namespace PersonalDiary.Persistence.Configurations
                 .OnDelete(DeleteBehavior.Cascade);
 
             builder.HasMany(x => x.Reviews)
-                .WithOne(x => x.FoodPlace)
+                .WithOne(x =>x.FoodPlace)
                 .HasForeignKey(x => x.FoodPlaceId)
                 .OnDelete(DeleteBehavior.Cascade);
         }

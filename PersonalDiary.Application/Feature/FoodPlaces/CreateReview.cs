@@ -4,7 +4,7 @@ using PersonalDiary.Domain.Models.Reviews;
 using PersonalDiary.Domain.Repositories;
 using PersonalDiary.Application.Interfaces;
 
-namespace PersonalDiary.Application.Feature.Food
+namespace PersonalDiary.Application.Feature.FoodPlaces
 {
     public class CreateReview
     {

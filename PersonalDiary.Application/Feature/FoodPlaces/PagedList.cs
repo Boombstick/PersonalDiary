@@ -3,7 +3,7 @@ using FluentValidation;
 using PersonalDiary.Domain.Repositories;
 using PersonalDiary.Domain.Models.FoodPlaces;
 
-namespace PersonalDiary.Application.Feature.Food
+namespace PersonalDiary.Application.Feature.FoodPlaces
 {
     public class PagedList
     {
@@ -12,7 +12,7 @@ namespace PersonalDiary.Application.Feature.Food
             public int Page { get; set; }
             public int PageSize { get; set; }
             public long? CityId { get; set; }
-            public long? CuisineId { get; set; }
+            public Cousine? Cuisine { get; set; }
             public string? SearchTerm { get; set; }
         }
 
@@ -50,13 +50,13 @@ namespace PersonalDiary.Application.Feature.Food
                     request.PageSize,
                     request.SearchTerm,
                     request.CityId,
-                    request.CuisineId);
+                    request.Cuisine);
                 return places.Select(foodPlace => new Model
                 {
                     Id = foodPlace.Id,
                     Address = foodPlace.Address,
                     City = foodPlace.City.Name,
-                    Cousine = foodPlace.Cousine,
+                    Cousine = foodPlace.Type,
                     Description = foodPlace.Description,
                     Name = foodPlace.Name,
                     UpdatedAt = foodPlace.UpdatedAt,
