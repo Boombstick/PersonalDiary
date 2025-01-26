@@ -12,22 +12,30 @@ namespace PersonalDiary.Persistence
         {
             using (var scope = services.CreateScope())
             {
-                var context = scope.ServiceProvider.GetRequiredService<DiaryDbContext>();
                 try
                 {
-                    await context.Database.MigrateAsync();
+                    var context = scope.ServiceProvider.GetRequiredService<DiaryDbContext>();
+                    try
+                    {
+                        await context.Database.MigrateAsync();
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                        throw new Exception("Alarm Миграции не применились");
+                    }
+                    if (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") != "Development")
+                    {
+                        await UpdateDictionaryAsync(context);
+                    }
+                    if (context.Cities.Count() < 2)
+                    {
+                        await SeedCityDictionaryAsync(context);
+                    }
                 }
-                catch
+                catch (Exception ex)
                 {
-                    throw new Exception("Alarm Миграции не применились");
-                }
-                if (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") != "Development")
-                {
-                    await UpdateDictionaryAsync(context);
-                }
-                if (context.Cities.Count() < 2)
-                {
-                    await SeedCityDictionaryAsync(context);
+                    Console.WriteLine(ex.Message);
                 }
             }
         }
@@ -41,16 +49,17 @@ namespace PersonalDiary.Persistence
         private static async Task UpdateDictionaryAsync(DiaryDbContext context)
         {
             var cities = GetDictionaryEntities<City>("Cities");
-            foreach (var entry in cities)
-            {
-                if (context.Cities.Any(d => d.Id == entry.Id))
-                {
-                    context.Cities.Add(new City
-                    {
-                        Name = entry.Name,
-                    });
-                }
-            }
+            //foreach (var entry in cities)
+            //{
+            //    if (context.Cities.Any(d => d.Id == entry.Id))
+            //    {
+            //        context.Cities.Add(new City
+            //        {
+            //            Name = entry.Name,
+            //        });
+            //    }
+            //}
+            context.Cities.UpdateRange(cities);
             await context.SaveChangesAsync();
         }
 
@@ -60,7 +69,7 @@ namespace PersonalDiary.Persistence
             {
 
                 string directory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-                string filePath = Path.Combine(directory,"SeedData", $"{resourceJsonFileNameWithoutExt}.json");
+                string filePath = Path.Combine(directory, "SeedData", $"{resourceJsonFileNameWithoutExt}.json");
                 var json = File.ReadAllText(filePath);
                 return JsonConvert.DeserializeObject<List<T>>(json) ?? throw new Exception($"Не получилось прочитать json для файла ${resourceJsonFileNameWithoutExt}.json");
             }

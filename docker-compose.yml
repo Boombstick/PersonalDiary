@@ -6,6 +6,8 @@ services:
       dockerfile: Dockerfile # Имя Dockerfile в корне репозитория
     ports:
       - "5000:5000" # Отображение порта API
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Docker
     depends_on:
       - postgres # API должен дождаться запуска базы данных
     networks:
