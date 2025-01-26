@@ -24,13 +24,13 @@ namespace PersonalDiary.Persistence
                         Console.WriteLine(ex.Message);
                         throw new Exception("Alarm Миграции не применились");
                     }
-                    if (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") != "Development")
-                    {
-                        await UpdateDictionaryAsync(context);
-                    }
                     if (context.Cities.Count() < 2)
                     {
                         await SeedCityDictionaryAsync(context);
+                    }
+                    else if (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") != "Development")
+                    {
+                        await UpdateDictionaryAsync(context);
                     }
                 }
                 catch (Exception ex)
@@ -49,17 +49,17 @@ namespace PersonalDiary.Persistence
         private static async Task UpdateDictionaryAsync(DiaryDbContext context)
         {
             var cities = GetDictionaryEntities<City>("Cities");
-            //foreach (var entry in cities)
-            //{
-            //    if (context.Cities.Any(d => d.Id == entry.Id))
-            //    {
-            //        context.Cities.Add(new City
-            //        {
-            //            Name = entry.Name,
-            //        });
-            //    }
-            //}
-            context.Cities.UpdateRange(cities);
+
+            foreach (var entry in cities)
+            {
+                var city = await context.Cities.FindAsync(entry.Id);
+                if (city == null)
+                {
+                    await context.Cities.AddAsync(entry);
+                    continue;
+                }
+                city.Name = entry.Name;
+            }
             await context.SaveChangesAsync();
         }
 
@@ -67,7 +67,6 @@ namespace PersonalDiary.Persistence
         {
             try
             {
-
                 string directory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
                 string filePath = Path.Combine(directory, "SeedData", $"{resourceJsonFileNameWithoutExt}.json");
                 var json = File.ReadAllText(filePath);
