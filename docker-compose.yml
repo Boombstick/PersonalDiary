@@ -1,0 +1,33 @@
+version: "3.9"
+services:
+  api:
+    build:
+      context: https://github.com/Boombstick/PersonalDiary.git#dev # Укажите ссылку на ваш репозиторий
+      dockerfile: Dockerfile # Имя Dockerfile в корне репозитория
+    ports:
+      - "5000:5000" # Отображение порта API
+    depends_on:
+      - database # API должен дождаться запуска базы данных
+    networks:
+      - app-network
+
+  database:
+    image: postgres:15.3 # Последняя версия PostgreSQL
+    container_name: postgres-db
+    ports:
+      - "5432:5432" # Отображение порта PostgreSQL
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: MyAppDb
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  pgdata:

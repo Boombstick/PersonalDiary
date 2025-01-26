@@ -1,38 +1,38 @@
 #See https://aka.ms/customizecontainer to learn how to customize your debug container and how Visual Studio uses this Dockerfile to build your images for faster debugging.
 
-# Используем базовый образ SDK для сборки
-FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build-stage
+# РСЃРїРѕР»СЊР·СѓРµРј Р±Р°Р·РѕРІС‹Р№ РѕР±СЂР°Р· SDK РґР»СЏ СЃР±РѕСЂРєРё
+FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build-stage
 
-# Устанавливаем рабочую директорию
+# РЈСЃС‚Р°РЅР°РІР»РёРІР°РµРј СЂР°Р±РѕС‡СѓСЋ РґРёСЂРµРєС‚РѕСЂРёСЋ
 WORKDIR /app
 
-# Копируем файл решения и файлы проектов, исключая тестовый проект
+# РљРѕРїРёСЂСѓРµРј С„Р°Р№Р» СЂРµС€РµРЅРёСЏ Рё С„Р°Р№Р»С‹ РїСЂРѕРµРєС‚РѕРІ, РёСЃРєР»СЋС‡Р°СЏ С‚РµСЃС‚РѕРІС‹Р№ РїСЂРѕРµРєС‚
 COPY PersonalDiary.sln ./ 
 COPY PersonalDiary.Api/PersonalDiary.Api.csproj ./PersonalDiary.Api/
 COPY PersonalDiary.Domain/PersonalDiary.Domain.csproj ./PersonalDiary.Domain/
 COPY PersonalDiary.Application/PersonalDiary.Application.csproj ./PersonalDiary.Application/
 COPY PersonalDiary.Persistence/PersonalDiary.Persistence.csproj ./PersonalDiary.Persistence/
 
-# Устанавливаем параметры NuGet, чтобы пропустить отсутствующие проекты
+# РЈСЃС‚Р°РЅР°РІР»РёРІР°РµРј РїР°СЂР°РјРµС‚СЂС‹ NuGet, С‡С‚РѕР±С‹ РїСЂРѕРїСѓСЃС‚РёС‚СЊ РѕС‚СЃСѓС‚СЃС‚РІСѓСЋС‰РёРµ РїСЂРѕРµРєС‚С‹
 RUN dotnet restore --ignore-failed-sources
 
-# Копируем остальные файлы
+# РљРѕРїРёСЂСѓРµРј РѕСЃС‚Р°Р»СЊРЅС‹Рµ С„Р°Р№Р»С‹
 COPY . ./ 
 
-# Сборка и публикация только для API проекта
+# РЎР±РѕСЂРєР° Рё РїСѓР±Р»РёРєР°С†РёСЏ С‚РѕР»СЊРєРѕ РґР»СЏ API РїСЂРѕРµРєС‚Р°
 RUN dotnet publish PersonalDiary.Api -c Release -o /publish
 
-# Используем базовый образ Runtime для запуска
-FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS runtime-stage
+# РСЃРїРѕР»СЊР·СѓРµРј Р±Р°Р·РѕРІС‹Р№ РѕР±СЂР°Р· Runtime РґР»СЏ Р·Р°РїСѓСЃРєР°
+FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS runtime-stage
 
-# Копируем опубликованные файлы
+# РљРѕРїРёСЂСѓРµРј РѕРїСѓР±Р»РёРєРѕРІР°РЅРЅС‹Рµ С„Р°Р№Р»С‹
 COPY --from=build-stage /publish /app
 
-# Устанавливаем рабочую директорию
+# РЈСЃС‚Р°РЅР°РІР»РёРІР°РµРј СЂР°Р±РѕС‡СѓСЋ РґРёСЂРµРєС‚РѕСЂРёСЋ
 WORKDIR /app
 
-# Указываем порт
+# РЈРєР°Р·С‹РІР°РµРј РїРѕСЂС‚
 EXPOSE 80
 
-# Запускаем приложение
+# Р—Р°РїСѓСЃРєР°РµРј РїСЂРёР»РѕР¶РµРЅРёРµ
 ENTRYPOINT ["dotnet", "PersonalDiary.Api.dll"]
