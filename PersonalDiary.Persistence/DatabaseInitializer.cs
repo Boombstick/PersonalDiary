@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using System.Reflection;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using PersonalDiary.Domain.Models.Dictionaries;
@@ -57,7 +58,9 @@ namespace PersonalDiary.Persistence
         {
             try
             {
-                var filePath = $"E:\\VisualGIT\\PersonalDiary\\PersonalDiary.Persistence\\SeedData\\{resourceJsonFileNameWithoutExt}.json";
+
+                string directory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+                string filePath = Path.Combine(directory,"SeedData", $"{resourceJsonFileNameWithoutExt}.json");
                 var json = File.ReadAllText(filePath);
                 return JsonConvert.DeserializeObject<List<T>>(json) ?? throw new Exception($"Не получилось прочитать json для файла ${resourceJsonFileNameWithoutExt}.json");
             }

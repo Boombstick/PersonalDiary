@@ -1,0 +1,14 @@
+{
+  "Servers": {
+    "1": {
+      "Name": "Personal Diary PostgreSQL",
+      "Group": "Servers",
+      "Host": "postgres",
+      "Port": 5432,
+      "MaintenanceDB": "pesonalDiary",
+      "Username": "postgres",
+      "Password": "postgres",
+      "SSLMode": "prefer"
+    }
+  }
+}
