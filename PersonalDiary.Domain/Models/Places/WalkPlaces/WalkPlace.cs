@@ -3,7 +3,7 @@ using PersonalDiary.Domain.AbstractClasses;
 
 namespace PersonalDiary.Domain.Models.Places.WalkPlaces
 {
-    public class WalkPlace : RateablePlaceEntity<WalkPlaceReview, WalkPlaceType>
+    public class WalkPlace : RateablePlaceEntity<WalkPlace, WalkPlaceReview, WalkPlaceType>
     {
 
     }

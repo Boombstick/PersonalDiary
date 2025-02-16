@@ -2,8 +2,8 @@
 
 namespace PersonalDiary.Domain.AbstractClasses
 {
-    public class RateablePlaceEntity<TReviewCollection,TType> : Place<TType>
-        where TReviewCollection : Review
+    public class RateablePlaceEntity<TEntity,TReviewCollection,TType> : Place<TType>
+        where TReviewCollection : Review<TEntity>
         where TType : Enum
     {
         public float AverageRating { get; set; }

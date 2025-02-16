@@ -14,9 +14,11 @@ using PersonalDiary.Domain.Models.Users;
 using PersonalDiary.Application.Interfaces;
 using PersonalDiary.Persistence.Repositories;
 using PersonalDiary.Application.Infrastructure;
+using PersonalDiary.Domain.Repositories.Reviews;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using PersonalDiary.Application.Feature.Places.FoodPlaces;
 using PersonalDiary.Persistence.Repositories.DictionaryRepository;
+using PersonalDiary.Persistence.Repositories.PlaceRepositories.Reviews;
 using PersonalDiary.Persistence.Repositories.PlaceRepositories.RateablePlaces;
 
 namespace PersonalDiary.Api
@@ -44,12 +46,16 @@ namespace PersonalDiary.Api
             builder.Services.AddScoped<IFoodPlaceRepository, FoodPlaceRepository>();
             builder.Services.AddScoped<ICulturePlaceRepository, CulturePlaceRepository>();
             builder.Services.AddScoped<IWalkPlaceRepository, WalkPlaceRepository>();
+            #region Reviews
+            builder.Services.AddScoped<IFoodPlaceReviewRepository, FoodPlaceReviewRepository>();
+            builder.Services.AddScoped<ICulturePlaceReviewRepository, CulturePlaceReviewRepository>();
+            builder.Services.AddScoped<IWalkPlaceReviewRepository, WalkPlaceReviewRepository>();
+            #endregion
             #endregion
 
             builder.Services.AddScoped<IMyTaskRepository, MyTaskRepository>();
             builder.Services.AddScoped<ITaskBoardRepository, TaskBoardRepository>();
             builder.Services.AddScoped<IDictionaryRepository, DictionaryRepository>();
-            builder.Services.AddScoped<IRatingRepository, RatingRepository>();
 
             // MediatR
             builder.Services.AddMediatR(x => x.RegisterServicesFromAssembly(typeof(Create.Command).Assembly));

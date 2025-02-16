@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <Folder Include="Models\Dictionaries\" />
+    <Folder Include="Repositories\Places\" />
   </ItemGroup>
 
 </Project>

@@ -16,8 +16,8 @@ namespace PersonalDiary.Persistence.Configurations.PlaceConfigurations.RateableE
                 .OnDelete(DeleteBehavior.Cascade);
 
             builder.HasMany(x => x.Reviews)
-                .WithOne(x => x.FoodPlace)
-                .HasForeignKey(x => x.FoodPlaceId)
+                .WithOne(x => x.Place)
+                .HasForeignKey(x => x.PlaceId)
                 .OnDelete(DeleteBehavior.Cascade);
         }
     }

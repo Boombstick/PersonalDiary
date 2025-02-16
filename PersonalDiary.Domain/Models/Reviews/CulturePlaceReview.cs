@@ -2,9 +2,9 @@
 
 namespace PersonalDiary.Domain.Models.Reviews
 {
-    public class CulturePlaceReview : Review
+    public class CulturePlaceReview : Review<CulturePlace>
     {
-        public CulturePlace CulturePlace { get; set; }
-        public Guid CulturePlaceId { get; set; }
+        public byte VibeRating { get; set; }
+        public byte InterestingRating { get; set; }
     }
 }

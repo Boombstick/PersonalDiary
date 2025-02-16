@@ -5,8 +5,8 @@ using PersonalDiary.Domain.AbstractClasses;
 namespace PersonalDiary.Persistence.Repositories
 {
     public class RateableEntityRepository<TEntity, TReviewCollection, TType>
-        where TEntity : RateablePlaceEntity<TReviewCollection, TType>
-        where TReviewCollection : Review
+        where TEntity : RateablePlaceEntity<TEntity, TReviewCollection, TType>
+        where TReviewCollection : Review<TEntity>
         where TType : struct, Enum
 
     {

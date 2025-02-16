@@ -2,11 +2,9 @@
 
 namespace PersonalDiary.Domain.Models.Reviews
 {
-    public class WalkPlaceReview : Review
+    public class WalkPlaceReview : Review<WalkPlace>
     {
         public byte VibeRating { get; set; }
-        public Guid WalkPlaceId { get; set; }
-        public WalkPlace WalkPlace { get; set; }
 
     }
 }

@@ -2,12 +2,10 @@
 
 namespace PersonalDiary.Domain.Models.Reviews
 {
-    public class FoodPlaceReview : Review
+    public class FoodPlaceReview : Review<FoodPlace>
     {
         public byte FoodRating { get; set; }
         public byte VibeRating { get; set; }
         public byte ServiceRating { get; set; }
-        public Guid FoodPlaceId { get; set; }
-        public FoodPlace FoodPlace { get; set; }
     }
 }

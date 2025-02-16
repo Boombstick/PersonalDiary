@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using FluentValidation;
 using PersonalDiary.Application.Common;
-using PersonalDiary.Domain.Repositories;
+using PersonalDiary.Domain.Repositories.Reviews;
 
 namespace PersonalDiary.Application.Feature.Places.FoodPlaces
 {
@@ -28,20 +28,20 @@ namespace PersonalDiary.Application.Feature.Places.FoodPlaces
         }
         public class Handler : IRequestHandler<Query, IReadOnlyList<Model>>
         {
-            private readonly IRatingRepository _ratingRepository;
-            public Handler(IRatingRepository ratingRepository)
+            private readonly IFoodPlaceReviewRepository _reviewRepository;
+            public Handler(IFoodPlaceReviewRepository ratingRepository)
             {
-                _ratingRepository = ratingRepository;
+                _reviewRepository = ratingRepository;
             }
             public async Task<IReadOnlyList<Model>> Handle(Query request, CancellationToken cancellationToken)
             {
-                var reviews = await _ratingRepository.GetPagedList(request.Page, request.PageSize, request.FoodPlaceId);
+                var reviews = await _reviewRepository.GetPagedList(request.Page, request.PageSize, request.FoodPlaceId);
                 return reviews.Select(x => new Model
                 {
                     FoodRating = x.FoodRating,
                     VibeRating = x.VibeRating,
                     Comment = x.Comment,
-                    FoodPlaceId = x.FoodPlaceId,
+                    FoodPlaceId = x.PlaceId,
                     ServiceRating = x.ServiceRating
                 }).ToList();
             }

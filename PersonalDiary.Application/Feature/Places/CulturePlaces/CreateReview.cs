@@ -1,8 +1,8 @@
 ﻿using MediatR;
 using FluentValidation;
-using PersonalDiary.Domain.Repositories;
 using PersonalDiary.Domain.Models.Reviews;
 using PersonalDiary.Application.Interfaces;
+using PersonalDiary.Domain.Repositories.Reviews;
 
 namespace PersonalDiary.Application.Feature.Places.CulturePlaces
 {
@@ -25,11 +25,11 @@ namespace PersonalDiary.Application.Feature.Places.CulturePlaces
         }
         public class Handler : IRequestHandler<Command, long>
         {
-            private readonly IRatingRepository _ratingRepository;
+            private readonly IFoodPlaceReviewRepository _reviewRepository;
             private readonly ICurrentUser _currentUser;
-            public Handler(IRatingRepository ratingRepository, ICurrentUser currentUser)
+            public Handler(IFoodPlaceReviewRepository reviewRepository, ICurrentUser currentUser)
             {
-                _ratingRepository = ratingRepository;
+                _reviewRepository = reviewRepository;
                 _currentUser = currentUser;
             }
             public async Task<long> Handle(Command request, CancellationToken cancellationToken)
@@ -37,14 +37,14 @@ namespace PersonalDiary.Application.Feature.Places.CulturePlaces
                 var review = new FoodPlaceReview
                 {
                     Comment = request.Comment,
-                    FoodPlaceId = request.FoodPlaceId,
+                    PlaceId = request.FoodPlaceId,
                     FoodRating = request.FoodRating,
                     ServiceRating = request.ServiceRating,
                     VibeRating = request.VibeRating,
                     AuthorId = _currentUser.Id,
                     CreatedAt = DateTime.UtcNow,
                 };
-                await _ratingRepository.AddReview(review);
+                await _reviewRepository.AddReview(review);
                 return review.Id;
             }
         }

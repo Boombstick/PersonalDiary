@@ -3,7 +3,7 @@ using PersonalDiary.Domain.AbstractClasses;
 
 namespace PersonalDiary.Domain.Models.Places.FoodPlaces
 {
-    public class FoodPlace : RateablePlaceEntity<FoodPlaceReview, FoodPlaceType>
+    public class FoodPlace : RateablePlaceEntity<FoodPlace, FoodPlaceReview, FoodPlaceType>
     {
 
     }
