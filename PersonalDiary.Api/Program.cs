@@ -96,7 +96,7 @@ namespace PersonalDiary.Api
             builder.Services.AddTransient<IJwtTokenProvider, JwtTokenProvider>();
             builder.Services.AddScoped<ICurrentUser, CurrentUser>();
             builder.Services.AddTransient<CurrentUserMiddleware>();
-
+            builder.Services.AddTransient<RequestLoggerMiddleware>();
 
             builder.Services.AddScoped<CustomExceptionFilter>();
             builder.Services.AddSwaggerGen(options =>
