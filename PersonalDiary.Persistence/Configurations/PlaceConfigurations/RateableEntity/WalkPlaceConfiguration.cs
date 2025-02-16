@@ -12,7 +12,7 @@ namespace PersonalDiary.Persistence.Configurations.PlaceConfigurations.RateableE
             builder.HasKey(x => x.Id);
 
             builder.HasOne(x => x.City)
-                .WithMany()
+                .WithMany(x=>x.WalkPlaces)
                 .HasForeignKey(x => x.CityId)
                 .OnDelete(DeleteBehavior.Cascade);
 

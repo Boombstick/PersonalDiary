@@ -1,5 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
-using PersonalDiary.Domain.Models.Dictionaries;
+﻿using PersonalDiary.Domain.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace PersonalDiary.Persistence.Repositories.DictionaryRepository
 {
@@ -7,7 +7,7 @@ namespace PersonalDiary.Persistence.Repositories.DictionaryRepository
     {
         public async Task<IReadOnlyCollection<City>> GetCities()
         {
-            return await _diaryDbContext.Cities.Skip(1).ToListAsync();
+            return await _diaryDbContext.Cities.ToListAsync();
         }
     }
 }

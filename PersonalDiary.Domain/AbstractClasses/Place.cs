@@ -1,9 +1,9 @@
-﻿using PersonalDiary.Domain.Interfaces;
-using PersonalDiary.Domain.Models.Dictionaries;
+﻿using PersonalDiary.Domain.Models;
+using PersonalDiary.Domain.Interfaces;
 
 namespace PersonalDiary.Domain.AbstractClasses
 {
-    public abstract class Place<TType> : ICreatedAt, IUpdatedAt 
+    public abstract class Place<TType> : ICreatedAt, IUpdatedAt
         where TType : Enum
     {
         public Guid Id { get; set; }

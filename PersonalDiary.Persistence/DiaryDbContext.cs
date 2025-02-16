@@ -1,10 +1,10 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using PersonalDiary.Domain.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System.Text.RegularExpressions;
 using PersonalDiary.Domain.Models.Users;
 using PersonalDiary.Domain.Models.MyTask;
 using PersonalDiary.Domain.Models.Reviews;
-using PersonalDiary.Domain.Models.Dictionaries;
 using PersonalDiary.Domain.Models.Places.FoodPlaces;
 using PersonalDiary.Domain.Models.Places.WalkPlaces;
 using PersonalDiary.Domain.Models.Places.CulturePlaces;

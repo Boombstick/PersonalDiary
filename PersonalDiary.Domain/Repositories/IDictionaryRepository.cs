@@ -1,4 +1,4 @@
-﻿using PersonalDiary.Domain.Models.Dictionaries;
+﻿using PersonalDiary.Domain.Models;
 
 namespace PersonalDiary.Domain.Repositories
 {

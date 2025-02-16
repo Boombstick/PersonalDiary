@@ -1,8 +1,8 @@
 ﻿using Newtonsoft.Json;
 using System.Reflection;
+using PersonalDiary.Domain.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using PersonalDiary.Domain.Models.Dictionaries;
 
 namespace PersonalDiary.Persistence
 {

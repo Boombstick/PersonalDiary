@@ -1,602 +1,752 @@
 [
   {
     "Id": 1,
-    "Name": "Москва"
+    "Name": "Москва",
+    "Description": ""
   },
   {
     "Id": 2,
-    "Name": "Казань"
+    "Name": "Казань",
+    "Description": ""
   },
   {
     "Id": 3,
-    "Name": "Ижевск"
+    "Name": "Ижевск",
+    "Description": ""
   },
   {
     "Id": 4,
-    "Name": "Екатеринбург"
+    "Name": "Екатеринбург",
+    "Description": ""
   },
   {
     "Id": 5,
-    "Name": "Санкт-Петербург"
+    "Name": "Санкт-Петербург",
+    "Description": ""
   },
   {
     "Id": 6,
-    "Name": "Сочи"
+    "Name": "Сочи",
+    "Description": ""
   },
   {
     "Id": 7,
-    "Name": "Новосибирск"
+    "Name": "Новосибирск",
+    "Description": ""
   },
   {
     "Id": 8,
-    "Name": "Краснодар"
+    "Name": "Краснодар",
+    "Description": ""
   },
   {
     "Id": 9,
-    "Name": "Воронеж"
+    "Name": "Воронеж",
+    "Description": ""
   },
   {
     "Id": 10,
-    "Name": "Нижний Новгород"
+    "Name": "Нижний Новгород",
+    "Description": ""
   },
   {
     "Id": 11,
-    "Name": "Самара"
+    "Name": "Самара",
+    "Description": ""
   },
   {
     "Id": 12,
-    "Name": "Ростов-на-Дону"
+    "Name": "Ростов-на-Дону",
+    "Description": ""
   },
   {
     "Id": 13,
-    "Name": "Челябинск"
+    "Name": "Челябинск",
+    "Description": ""
   },
   {
     "Id": 14,
-    "Name": "Омск"
+    "Name": "Омск",
+    "Description": ""
   },
   {
     "Id": 15,
-    "Name": "Уфа"
+    "Name": "Уфа",
+    "Description": ""
   },
   {
     "Id": 16,
-    "Name": "Пермь"
+    "Name": "Пермь",
+    "Description": ""
   },
   {
     "Id": 17,
-    "Name": "Волгоград"
+    "Name": "Волгоград",
+    "Description": ""
   },
   {
     "Id": 18,
-    "Name": "Красноярск"
+    "Name": "Красноярск",
+    "Description": ""
   },
   {
     "Id": 19,
-    "Name": "Барнаул"
+    "Name": "Барнаул",
+    "Description": ""
   },
   {
     "Id": 20,
-    "Name": "Иркутск"
+    "Name": "Иркутск",
+    "Description": ""
   },
   {
     "Id": 21,
-    "Name": "Кемерово"
+    "Name": "Кемерово",
+    "Description": ""
   },
   {
     "Id": 22,
-    "Name": "Тюмень"
+    "Name": "Тюмень",
+    "Description": ""
   },
   {
     "Id": 23,
-    "Name": "Саратов"
+    "Name": "Саратов",
+    "Description": ""
   },
   {
     "Id": 24,
-    "Name": "Тольятти"
+    "Name": "Тольятти",
+    "Description": ""
   },
   {
     "Id": 25,
-    "Name": "Хабаровск"
+    "Name": "Хабаровск",
+    "Description": ""
   },
   {
     "Id": 26,
-    "Name": "Владивосток"
+    "Name": "Владивосток",
+    "Description": ""
   },
   {
     "Id": 27,
-    "Name": "Калининград"
+    "Name": "Калининград",
+    "Description": ""
   },
   {
     "Id": 28,
-    "Name": "Белгород"
+    "Name": "Белгород",
+    "Description": ""
   },
   {
     "Id": 29,
-    "Name": "Курск"
+    "Name": "Курск",
+    "Description": ""
   },
   {
     "Id": 30,
-    "Name": "Орёл"
+    "Name": "Орёл",
+    "Description": ""
   },
   {
     "Id": 31,
-    "Name": "Тула"
+    "Name": "Тула",
+    "Description": ""
   },
   {
     "Id": 32,
-    "Name": "Липецк"
+    "Name": "Липецк",
+    "Description": ""
   },
   {
     "Id": 33,
-    "Name": "Пенза"
+    "Name": "Пенза",
+    "Description": ""
   },
   {
     "Id": 34,
-    "Name": "Ульяновск"
+    "Name": "Ульяновск",
+    "Description": ""
   },
   {
     "Id": 35,
-    "Name": "Рязань"
+    "Name": "Рязань",
+    "Description": ""
   },
   {
     "Id": 36,
-    "Name": "Ярославль"
+    "Name": "Ярославль",
+    "Description": ""
   },
   {
     "Id": 37,
-    "Name": "Кострома"
+    "Name": "Кострома",
+    "Description": ""
   },
   {
     "Id": 38,
-    "Name": "Тверь"
+    "Name": "Тверь",
+    "Description": ""
   },
   {
     "Id": 39,
-    "Name": "Вологда"
+    "Name": "Вологда",
+    "Description": ""
   },
   {
     "Id": 40,
-    "Name": "Иваново"
+    "Name": "Иваново",
+    "Description": ""
   },
   {
     "Id": 41,
-    "Name": "Владимир"
+    "Name": "Владимир",
+    "Description": ""
   },
   {
     "Id": 42,
-    "Name": "Чебоксары"
+    "Name": "Чебоксары",
+    "Description": ""
   },
   {
     "Id": 43,
-    "Name": "Смоленск"
+    "Name": "Смоленск",
+    "Description": ""
   },
   {
     "Id": 44,
-    "Name": "Брянск"
+    "Name": "Брянск",
+    "Description": ""
   },
   {
     "Id": 45,
-    "Name": "Старый Оскол"
+    "Name": "Старый Оскол",
+    "Description": ""
   },
   {
     "Id": 46,
-    "Name": "Мытищи"
+    "Name": "Мытищи",
+    "Description": ""
   },
   {
     "Id": 47,
-    "Name": "Химки"
+    "Name": "Химки",
+    "Description": ""
   },
   {
     "Id": 48,
-    "Name": "Пушкино"
+    "Name": "Пушкино",
+    "Description": ""
   },
   {
     "Id": 49,
-    "Name": "Раменское"
+    "Name": "Раменское",
+    "Description": ""
   },
   {
     "Id": 50,
-    "Name": "Одинцово"
+    "Name": "Одинцово",
+    "Description": ""
   },
   {
     "Id": 51,
-    "Name": "Балашиха"
+    "Name": "Балашиха",
+    "Description": ""
   },
   {
     "Id": 52,
-    "Name": "Коломна"
+    "Name": "Коломна",
+    "Description": ""
   },
   {
     "Id": 53,
-    "Name": "Обнинск"
+    "Name": "Обнинск",
+    "Description": ""
   },
   {
     "Id": 54,
-    "Name": "Жуковский"
+    "Name": "Жуковский",
+    "Description": ""
   },
   {
     "Id": 55,
-    "Name": "Калуга"
+    "Name": "Калуга",
+    "Description": ""
   },
   {
     "Id": 56,
-    "Name": "Тамбов"
+    "Name": "Тамбов",
+    "Description": ""
   },
   {
     "Id": 57,
-    "Name": "Муром"
+    "Name": "Муром",
+    "Description": ""
   },
   {
     "Id": 58,
-    "Name": "Новокузнецк"
+    "Name": "Новокузнецк",
+    "Description": ""
   },
   {
     "Id": 59,
-    "Name": "Астрахань"
+    "Name": "Астрахань",
+    "Description": ""
   },
   {
     "Id": 60,
-    "Name": "Элиста"
+    "Name": "Элиста",
+    "Description": ""
   },
   {
     "Id": 61,
-    "Name": "Владикавказ"
+    "Name": "Владикавказ",
+    "Description": ""
   },
   {
     "Id": 62,
-    "Name": "Назрань"
+    "Name": "Назрань",
+    "Description": ""
   },
   {
     "Id": 63,
-    "Name": "Махачкала"
+    "Name": "Махачкала",
+    "Description": ""
   },
   {
     "Id": 64,
-    "Name": "Грозный"
+    "Name": "Грозный",
+    "Description": ""
   },
   {
     "Id": 65,
-    "Name": "Симферополь"
+    "Name": "Симферополь",
+    "Description": ""
   },
   {
     "Id": 66,
-    "Name": "Севастополь"
+    "Name": "Севастополь",
+    "Description": ""
   },
   {
     "Id": 67,
-    "Name": "Ялта"
+    "Name": "Ялта",
+    "Description": ""
   },
   {
     "Id": 68,
-    "Name": "Евпатория"
+    "Name": "Евпатория",
+    "Description": ""
   },
   {
     "Id": 69,
-    "Name": "Керчь"
+    "Name": "Керчь",
+    "Description": ""
   },
   {
     "Id": 70,
-    "Name": "Архангельск"
+    "Name": "Архангельск",
+    "Description": ""
   },
   {
     "Id": 71,
-    "Name": "Мурманск"
+    "Name": "Мурманск",
+    "Description": ""
   },
   {
     "Id": 72,
-    "Name": "Якутск"
+    "Name": "Якутск",
+    "Description": ""
   },
   {
     "Id": 73,
-    "Name": "Чита"
+    "Name": "Чита",
+    "Description": ""
   },
   {
     "Id": 74,
-    "Name": "Магадан"
+    "Name": "Магадан",
+    "Description": ""
   },
   {
     "Id": 75,
-    "Name": "Южно-Сахалинск"
+    "Name": "Южно-Сахалинск",
+    "Description": ""
   },
   {
     "Id": 76,
-    "Name": "Нальчик"
+    "Name": "Нальчик",
+    "Description": ""
   },
   {
     "Id": 77,
-    "Name": "Кисловодск"
+    "Name": "Кисловодск",
+    "Description": ""
   },
   {
     "Id": 78,
-    "Name": "Пятигорск"
+    "Name": "Пятигорск",
+    "Description": ""
   },
   {
     "Id": 79,
-    "Name": "Ессентуки"
+    "Name": "Ессентуки",
+    "Description": ""
   },
   {
     "Id": 80,
-    "Name": "Минеральные Воды"
+    "Name": "Минеральные Воды",
+    "Description": ""
   },
   {
     "Id": 81,
-    "Name": "Ставрополь"
+    "Name": "Ставрополь",
+    "Description": ""
   },
   {
     "Id": 82,
-    "Name": "Черкесск"
+    "Name": "Черкесск",
+    "Description": ""
   },
   {
     "Id": 83,
-    "Name": "Геленджик"
+    "Name": "Геленджик",
+    "Description": ""
   },
   {
     "Id": 84,
-    "Name": "Новороссийск"
+    "Name": "Новороссийск",
+    "Description": ""
   },
   {
     "Id": 85,
-    "Name": "Армавир"
+    "Name": "Армавир",
+    "Description": ""
   },
   {
     "Id": 86,
-    "Name": "Туапсе"
+    "Name": "Туапсе",
+    "Description": ""
   },
   {
     "Id": 87,
-    "Name": "Анапа"
+    "Name": "Анапа",
+    "Description": ""
   },
   {
     "Id": 88,
-    "Name": "Горно-Алтайск"
+    "Name": "Горно-Алтайск",
+    "Description": ""
   },
   {
     "Id": 89,
-    "Name": "Ханты-Мансийск"
+    "Name": "Ханты-Мансийск",
+    "Description": ""
   },
   {
     "Id": 90,
-    "Name": "Салехард"
+    "Name": "Салехард",
+    "Description": ""
   },
   {
     "Id": 91,
-    "Name": "Кызыл"
+    "Name": "Кызыл",
+    "Description": ""
   },
   {
     "Id": 92,
-    "Name": "Улан-Удэ"
+    "Name": "Улан-Удэ",
+    "Description": ""
   },
   {
     "Id": 93,
-    "Name": "Кемерово"
+    "Name": "Кемерово",
+    "Description": ""
   },
   {
     "Id": 94,
-    "Name": "Сургут"
+    "Name": "Сургут",
+    "Description": ""
   },
   {
     "Id": 95,
-    "Name": "Нефтеюганск"
+    "Name": "Нефтеюганск",
+    "Description": ""
   },
   {
     "Id": 96,
-    "Name": "Лангепас"
+    "Name": "Лангепас",
+    "Description": ""
   },
   {
     "Id": 97,
-    "Name": "Мегион"
+    "Name": "Мегион",
+    "Description": ""
   },
   {
     "Id": 98,
-    "Name": "Березники"
+    "Name": "Березники",
+    "Description": ""
   },
   {
     "Id": 99,
-    "Name": "Златоуст"
+    "Name": "Златоуст",
+    "Description": ""
   },
   {
     "Id": 100,
-    "Name": "Саров"
+    "Name": "Саров",
+    "Description": ""
   },
   {
     "Id": 101,
-    "Name": "Новотроицк"
+    "Name": "Новотроицк",
+    "Description": ""
   },
   {
     "Id": 102,
-    "Name": "Димитровград"
+    "Name": "Димитровград",
+    "Description": ""
   },
   {
     "Id": 103,
-    "Name": "Альметьевск"
+    "Name": "Альметьевск",
+    "Description": ""
   },
   {
     "Id": 104,
-    "Name": "Елабуга"
+    "Name": "Елабуга",
+    "Description": ""
   },
   {
     "Id": 105,
-    "Name": "Камышин"
+    "Name": "Камышин",
+    "Description": ""
   },
   {
     "Id": 106,
-    "Name": "Бузулук"
+    "Name": "Бузулук",
+    "Description": ""
   },
   {
     "Id": 107,
-    "Name": "Волгодонск"
+    "Name": "Волгодонск",
+    "Description": ""
   },
   {
     "Id": 108,
-    "Name": "Шахты"
+    "Name": "Шахты",
+    "Description": ""
   },
   {
     "Id": 109,
-    "Name": "Невинномысск"
+    "Name": "Невинномысск",
+    "Description": ""
   },
   {
     "Id": 110,
-    "Name": "Арзамас"
+    "Name": "Арзамас",
+    "Description": ""
   },
   {
     "Id": 111,
-    "Name": "Наро-Фоминск"
+    "Name": "Наро-Фоминск",
+    "Description": ""
   },
   {
     "Id": 112,
-    "Name": "Домодедово"
+    "Name": "Домодедово",
+    "Description": ""
   },
   {
     "Id": 113,
-    "Name": "Люберцы"
+    "Name": "Люберцы",
+    "Description": ""
   },
   {
     "Id": 114,
-    "Name": "Троицк"
+    "Name": "Троицк",
+    "Description": ""
   },
   {
     "Id": 115,
-    "Name": "Долгопрудный"
+    "Name": "Долгопрудный",
+    "Description": ""
   },
   {
     "Id": 116,
-    "Name": "Клин"
+    "Name": "Клин",
+    "Description": ""
   },
   {
     "Id": 117,
-    "Name": "Руза"
+    "Name": "Руза",
+    "Description": ""
   },
   {
     "Id": 118,
-    "Name": "Звенигород"
+    "Name": "Звенигород",
+    "Description": ""
   },
   {
     "Id": 119,
-    "Name": "Сергиев Посад"
+    "Name": "Сергиев Посад",
+    "Description": ""
   },
   {
     "Id": 120,
-    "Name": "Дмитров"
+    "Name": "Дмитров",
+    "Description": ""
   },
   {
     "Id": 121,
-    "Name": "Лобня"
+    "Name": "Лобня",
+    "Description": ""
   },
   {
     "Id": 122,
-    "Name": "Зеленоград"
+    "Name": "Зеленоград",
+    "Description": ""
   },
   {
     "Id": 123,
-    "Name": "Сатка"
+    "Name": "Сатка",
+    "Description": ""
   },
   {
     "Id": 124,
-    "Name": "Выкса"
+    "Name": "Выкса",
+    "Description": ""
   },
   {
     "Id": 125,
-    "Name": "Кашира"
+    "Name": "Кашира",
+    "Description": ""
   },
   {
     "Id": 126,
-    "Name": "Грязи"
+    "Name": "Грязи",
+    "Description": ""
   },
   {
     "Id": 127,
-    "Name": "Абинск"
+    "Name": "Абинск",
+    "Description": ""
   },
   {
     "Id": 128,
-    "Name": "Гулькевичи"
+    "Name": "Гулькевичи",
+    "Description": ""
   },
   {
     "Id": 129,
-    "Name": "Павловск"
+    "Name": "Павловск",
+    "Description": ""
   },
   {
     "Id": 130,
-    "Name": "Протвино"
+    "Name": "Протвино",
+    "Description": ""
   },
   {
     "Id": 131,
-    "Name": "Сухой Лог"
+    "Name": "Сухой Лог",
+    "Description": ""
   },
   {
     "Id": 132,
-    "Name": "Полевской"
+    "Name": "Полевской",
+    "Description": ""
   },
   {
     "Id": 133,
-    "Name": "Асбест"
+    "Name": "Асбест",
+    "Description": ""
   },
   {
     "Id": 134,
-    "Name": "Кыштым"
+    "Name": "Кыштым",
+    "Description": ""
   },
   {
     "Id": 135,
-    "Name": "Магнитогорск"
+    "Name": "Магнитогорск",
+    "Description": ""
   },
   {
     "Id": 136,
-    "Name": "Югорск"
+    "Name": "Югорск",
+    "Description": ""
   },
   {
     "Id": 137,
-    "Name": "Тобольск"
+    "Name": "Тобольск",
+    "Description": ""
   },
   {
     "Id": 138,
-    "Name": "Ноябрьск"
+    "Name": "Ноябрьск",
+    "Description": ""
   },
   {
     "Id": 139,
-    "Name": "Нижневартовск"
+    "Name": "Нижневартовск",
+    "Description": ""
   },
   {
     "Id": 140,
-    "Name": "Бердск"
+    "Name": "Бердск",
+    "Description": ""
   },
   {
     "Id": 141,
-    "Name": "Киселёвск"
+    "Name": "Киселёвск",
+    "Description": ""
   },
   {
     "Id": 142,
-    "Name": "Юрга"
+    "Name": "Юрга",
+    "Description": ""
   },
   {
     "Id": 143,
-    "Name": "Белово"
+    "Name": "Белово",
+    "Description": ""
   },
   {
     "Id": 144,
-    "Name": "Междуреченск"
+    "Name": "Междуреченск",
+    "Description": ""
   },
   {
     "Id": 145,
-    "Name": "Тайга"
+    "Name": "Тайга",
+    "Description": ""
   },
   {
     "Id": 146,
-    "Name": "Анжеро-Судженск"
+    "Name": "Анжеро-Судженск",
+    "Description": ""
   },
   {
     "Id": 147,
-    "Name": "Шадринск"
+    "Name": "Шадринск",
+    "Description": ""
   },
   {
     "Id": 148,
-    "Name": "Катайск"
+    "Name": "Катайск",
+    "Description": ""
   },
   {
     "Id": 149,
-    "Name": "Петропавловск-Камчатский"
+    "Name": "Петропавловск-Камчатский",
+    "Description": ""
   },
   {
     "Id": 150,
-    "Name": "Светлоград"
+    "Name": "Светлоград",
+    "Description": ""
   }
 ]

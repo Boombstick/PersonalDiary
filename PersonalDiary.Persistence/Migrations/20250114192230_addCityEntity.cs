@@ -25,11 +25,6 @@ namespace PersonalDiary.Persistence.Migrations
                     table.PrimaryKey("pk_cities", x => x.id);
                 });
 
-            migrationBuilder.InsertData(
-                table: "cities",
-                columns: ["id", "name"],
-                values: [0, "default"]);
-
             migrationBuilder.DropColumn(
                 name: "city",
                 table: "food_places");
