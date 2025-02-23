@@ -1,18 +1,19 @@
 ﻿using MediatR;
 using FluentValidation;
 using PersonalDiary.Domain.Repositories;
-using PersonalDiary.Domain.Models.Places.WalkPlaces;
+using PersonalDiary.Domain.Models.Places.CulturePlaces;
+using PersonalDiary.Application.Feature.City.Places;
 
-namespace PersonalDiary.Application.Feature.Places.WalkPlaces
+namespace PersonalDiary.Application.Feature.City.Places.CulturePlaces
 {
     public class PagedList
     {
-        public class Query : BasePlacePagedListQuery<WalkPlaceType>, IRequest<IReadOnlyList<Model>>
+        public class Query : BasePlacePagedListQuery<CulturePlaceType>, IRequest<IReadOnlyList<Model>>
         {
 
         }
 
-        public class Model : BasePlaceDetailsModel<WalkPlaceType>
+        public class Model : BasePlaceDetailsModel<CulturePlaceType>
         {
 
         }
@@ -25,14 +26,14 @@ namespace PersonalDiary.Application.Feature.Places.WalkPlaces
         }
         public class Handler : IRequestHandler<Query, IReadOnlyList<Model>>
         {
-            private readonly IWalkPlaceRepository _walkPlaceRepository;
-            public Handler(IWalkPlaceRepository walkPlaceRepository)
+            private readonly ICulturePlaceRepository _culturePlaceRepository;
+            public Handler(ICulturePlaceRepository culturePlaceRepository)
             {
-                _walkPlaceRepository = walkPlaceRepository;
+                _culturePlaceRepository = culturePlaceRepository;
             }
             public async Task<IReadOnlyList<Model>> Handle(Query request, CancellationToken cancellationToken)
             {
-                var places = await _walkPlaceRepository.GetPagedList(
+                var places = await _culturePlaceRepository.GetPagedList(
                     request.Page,
                     request.PageSize,
                     request.SearchTerm,

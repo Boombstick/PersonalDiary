@@ -2,8 +2,9 @@
 using FluentValidation;
 using PersonalDiary.Domain.Repositories;
 using PersonalDiary.Domain.Models.Places.WalkPlaces;
+using PersonalDiary.Application.Feature.City.Places;
 
-namespace PersonalDiary.Application.Feature.Places.WalkPlaces
+namespace PersonalDiary.Application.Feature.City.Places.WalkPlaces
 {
     public class Create
     {

@@ -3,7 +3,7 @@ using FluentValidation;
 using PersonalDiary.Application.Common;
 using PersonalDiary.Domain.Repositories.Reviews;
 
-namespace PersonalDiary.Application.Feature.Places.FoodPlaces
+namespace PersonalDiary.Application.Feature.City.Places.FoodPlaces
 {
     public class ReviewList
     {

@@ -2,9 +2,10 @@
 using FluentValidation;
 using PersonalDiary.Application.Common;
 using PersonalDiary.Domain.Repositories;
-using PersonalDiary.Domain.Models.Places.WalkPlaces;
+using PersonalDiary.Domain.Models.Places.CulturePlaces;
+using PersonalDiary.Application.Feature.City.Places;
 
-namespace PersonalDiary.Application.Feature.Places.WalkPlaces
+namespace PersonalDiary.Application.Feature.City.Places.CulturePlaces
 {
     public class Details
     {
@@ -12,9 +13,8 @@ namespace PersonalDiary.Application.Feature.Places.WalkPlaces
         {
             public Guid Id { get; set; }
         }
-        public class Model : BasePlaceDetailsModel<WalkPlaceType>
+        public class Model : BasePlaceDetailsModel<CulturePlaceType>
         {
-            
         }
         public class Validator : AbstractValidator<Query>
         {
@@ -25,14 +25,14 @@ namespace PersonalDiary.Application.Feature.Places.WalkPlaces
         }
         public class Handler : IRequestHandler<Query, Model>
         {
-            private readonly IWalkPlaceRepository _walkPlaceRepository;
-            public Handler(IWalkPlaceRepository walkPlaceRepository)
+            private readonly ICulturePlaceRepository _culturePlaceRepository;
+            public Handler(ICulturePlaceRepository culturePlaceRepository)
             {
-                _walkPlaceRepository = walkPlaceRepository;
+                _culturePlaceRepository = culturePlaceRepository;
             }
             public async Task<Model> Handle(Query request, CancellationToken cancellationToken)
             {
-                var foodPlace = await _walkPlaceRepository.GetDetails(request.Id);
+                var foodPlace = await _culturePlaceRepository.GetDetails(request.Id);
                 var model = new Model
                 {
                     Id = foodPlace.Id,

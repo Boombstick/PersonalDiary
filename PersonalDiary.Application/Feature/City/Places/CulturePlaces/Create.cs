@@ -1,13 +1,13 @@
 ﻿using MediatR;
 using FluentValidation;
 using PersonalDiary.Domain.Repositories;
-using PersonalDiary.Domain.Models.Places.FoodPlaces;
+using PersonalDiary.Domain.Models.Places.CulturePlaces;
 
-namespace PersonalDiary.Application.Feature.Places.FoodPlaces
+namespace PersonalDiary.Application.Feature.City.Places.CulturePlaces
 {
     public class Create
     {
-        public class Command : BasePlaceCreateCommand<FoodPlaceType>, IRequest<Guid>
+        public class Command : BasePlaceCreateCommand<CulturePlaceType>, IRequest<Guid>
         {
 
         }
@@ -17,15 +17,15 @@ namespace PersonalDiary.Application.Feature.Places.FoodPlaces
         }
         public class Handler : IRequestHandler<Command, Guid>
         {
-            private readonly IFoodPlaceRepository _foodPlaceRepository;
-            public Handler(IFoodPlaceRepository foodPlaceRepository)
+            private readonly ICulturePlaceRepository _culturePlaceRepository;
+            public Handler(ICulturePlaceRepository culturePlaceRepository)
             {
-                _foodPlaceRepository = foodPlaceRepository;
+                _culturePlaceRepository = culturePlaceRepository;
             }
             public async Task<Guid> Handle(Command request, CancellationToken cancellationToken)
             {
                 var guid = Guid.NewGuid();
-                FoodPlace place = new FoodPlace
+                CulturePlace place = new CulturePlace
                 {
                     Id = guid,
                     Name = request.Name,
@@ -36,7 +36,7 @@ namespace PersonalDiary.Application.Feature.Places.FoodPlaces
                     CreatedAt = DateTime.UtcNow,
                     Description = request.Description,
                 };
-                await _foodPlaceRepository.Create(place);
+                await _culturePlaceRepository.Create(place);
                 return guid;
             }
         }

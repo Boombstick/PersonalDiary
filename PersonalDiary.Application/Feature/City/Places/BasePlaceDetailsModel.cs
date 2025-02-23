@@ -1,6 +1,6 @@
 ﻿using PersonalDiary.Application.Common;
 
-namespace PersonalDiary.Application.Feature.Places
+namespace PersonalDiary.Application.Feature.City.Places
 {
     public class BasePlaceDetailsModel<TType> where TType : struct, Enum
     {

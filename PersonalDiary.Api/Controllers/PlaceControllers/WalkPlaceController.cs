@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using PersonalDiary.Application.Feature.Places.WalkPlaces;
+using PersonalDiary.Application.Feature.City.Places.WalkPlaces;
 
 namespace PersonalDiary.Api.Controllers.PlaceControllers
 {

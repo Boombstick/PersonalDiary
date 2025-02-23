@@ -1,4 +1,4 @@
-﻿namespace PersonalDiary.Application.Feature.Places
+﻿namespace PersonalDiary.Application.Feature.City.Places
 {
     public class BasePlaceCreateCommand<TType> where TType : struct, Enum
     {

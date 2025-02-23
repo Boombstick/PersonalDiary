@@ -1,20 +1,20 @@
 ﻿using MediatR;
 using FluentValidation;
 using PersonalDiary.Domain.Repositories;
-using PersonalDiary.Domain.Models.Places.FoodPlaces;
+using PersonalDiary.Domain.Models.Places.WalkPlaces;
+using PersonalDiary.Application.Feature.City.Places;
 
-namespace PersonalDiary.Application.Feature.Places.FoodPlaces
+namespace PersonalDiary.Application.Feature.City.Places.WalkPlaces
 {
     public class PagedList
     {
-        public class Query : BasePlacePagedListQuery<FoodPlaceType>, IRequest<IReadOnlyList<Model>>
+        public class Query : BasePlacePagedListQuery<WalkPlaceType>, IRequest<IReadOnlyList<Model>>
         {
 
         }
 
-        public class Model : BasePlaceDetailsModel<FoodPlaceType>
+        public class Model : BasePlaceDetailsModel<WalkPlaceType>
         {
-
 
         }
         public class Validator : AbstractValidator<Query>
@@ -26,14 +26,14 @@ namespace PersonalDiary.Application.Feature.Places.FoodPlaces
         }
         public class Handler : IRequestHandler<Query, IReadOnlyList<Model>>
         {
-            private readonly IFoodPlaceRepository _foodPlaceRepository;
-            public Handler(IFoodPlaceRepository foodPlaceRepository)
+            private readonly IWalkPlaceRepository _walkPlaceRepository;
+            public Handler(IWalkPlaceRepository walkPlaceRepository)
             {
-                _foodPlaceRepository = foodPlaceRepository;
+                _walkPlaceRepository = walkPlaceRepository;
             }
             public async Task<IReadOnlyList<Model>> Handle(Query request, CancellationToken cancellationToken)
             {
-                var places = await _foodPlaceRepository.GetPagedList(
+                var places = await _walkPlaceRepository.GetPagedList(
                     request.Page,
                     request.PageSize,
                     request.SearchTerm,

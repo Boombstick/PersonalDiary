@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
-using PersonalDiary.Application.Feature.Places.FoodPlaces;
+using PersonalDiary.Application.Feature.City.Places.FoodPlaces;
 
 namespace PersonalDiary.Api.Controllers.PlaceControllers
 {
