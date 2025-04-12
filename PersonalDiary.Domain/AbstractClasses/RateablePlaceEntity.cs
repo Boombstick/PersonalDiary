@@ -1,8 +1,6 @@
-﻿using PersonalDiary.Domain.Models.Reviews;
-
-namespace PersonalDiary.Domain.AbstractClasses
+﻿namespace PersonalDiary.Domain.AbstractClasses
 {
-    public class RateablePlaceEntity<TEntity,TReviewCollection,TType> : Place<TType>
+    public abstract class RateablePlaceEntity<TEntity, TReviewCollection, TType> : Place<TType>
         where TReviewCollection : Review<TEntity>
         where TType : Enum
     {

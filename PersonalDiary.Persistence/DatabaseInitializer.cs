@@ -24,14 +24,14 @@ namespace PersonalDiary.Persistence
                         Console.WriteLine(ex.Message);
                         throw new Exception("Alarm Миграции не применились");
                     }
-                    if (context.Cities.Count() < 2)
-                    {
-                        await SeedCityDictionaryAsync(context);
-                    }
-                    else if (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") != "Development")
-                    {
-                        await UpdateDictionaryAsync(context);
-                    }
+                    //if (context.Cities.Count() < 2)
+                    //{
+                    //    await SeedCityDictionaryAsync(context);
+                    //}
+                    //else if (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") != "Development")
+                    //{
+                    //    await UpdateDictionaryAsync(context);
+                    //}
                 }
                 catch (Exception ex)
                 {

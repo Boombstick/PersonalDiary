@@ -25,6 +25,7 @@
   <ItemGroup>
     <ProjectReference Include="..\PersonalDiary.Application\PersonalDiary.Application.csproj" />
     <ProjectReference Include="..\PersonalDiary.Domain\PersonalDiary.Domain.csproj" />
+    <ProjectReference Include="..\PersonalDiary.Infrastructure\PersonalDiary.Infrastructure.csproj" />
     <ProjectReference Include="..\PersonalDiary.Persistence\PersonalDiary.Persistence.csproj" />
   </ItemGroup>
 

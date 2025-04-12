@@ -3,7 +3,7 @@ using PersonalDiary.Domain.Interfaces;
 
 namespace PersonalDiary.Domain.AbstractClasses
 {
-    public abstract class Place<TType> : ICreatedAt, IUpdatedAt
+    public abstract class Place<TType> : ICreatedAt, IUpdatedAt, IHaveMediaFiles
         where TType : Enum
     {
         public Guid Id { get; set; }
@@ -15,5 +15,6 @@ namespace PersonalDiary.Domain.AbstractClasses
         public long CityId { get; set; }
         public City City { get; set; }
         public TType Type { get; set; }
+        public ICollection<Media> MediaFiles { get; set; }
     }
 }

@@ -1,4 +1,6 @@
-﻿using PersonalDiary.Domain.Models.Places.CulturePlaces;
+﻿using PersonalDiary.Domain.Interfaces;
+using PersonalDiary.Domain.AbstractClasses;
+using PersonalDiary.Domain.Models.Places.CulturePlaces;
 
 namespace PersonalDiary.Domain.Models.Reviews
 {

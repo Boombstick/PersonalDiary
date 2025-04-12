@@ -174,7 +174,7 @@ namespace PersonalDiary.Persistence.Migrations
                     b.HasKey("Id")
                         .HasName("pk_cities");
 
-                    b.ToTable("cities");
+                    b.ToTable("cities", (string)null);
                 });
 
             modelBuilder.Entity("PersonalDiary.Domain.Models.MyTask.MyTask", b =>
@@ -222,7 +222,7 @@ namespace PersonalDiary.Persistence.Migrations
                     b.HasIndex("BoardId")
                         .HasDatabaseName("ix_tasks_board_id");
 
-                    b.ToTable("tasks");
+                    b.ToTable("tasks", (string)null);
                 });
 
             modelBuilder.Entity("PersonalDiary.Domain.Models.MyTask.TaskBoard", b =>
@@ -240,7 +240,7 @@ namespace PersonalDiary.Persistence.Migrations
                     b.HasKey("Id")
                         .HasName("pk_task_boards");
 
-                    b.ToTable("task_boards");
+                    b.ToTable("task_boards", (string)null);
                 });
 
             modelBuilder.Entity("PersonalDiary.Domain.Models.Places.CulturePlaces.CulturePlace", b =>
@@ -295,7 +295,7 @@ namespace PersonalDiary.Persistence.Migrations
                     b.HasIndex("CityId")
                         .HasDatabaseName("ix_culture_places_city_id");
 
-                    b.ToTable("culture_places");
+                    b.ToTable("culture_places", (string)null);
                 });
 
             modelBuilder.Entity("PersonalDiary.Domain.Models.Places.FoodPlaces.FoodPlace", b =>
@@ -350,7 +350,7 @@ namespace PersonalDiary.Persistence.Migrations
                     b.HasIndex("CityId")
                         .HasDatabaseName("ix_food_places_city_id");
 
-                    b.ToTable("food_places");
+                    b.ToTable("food_places", (string)null);
                 });
 
             modelBuilder.Entity("PersonalDiary.Domain.Models.Places.WalkPlaces.WalkPlace", b =>
@@ -405,7 +405,7 @@ namespace PersonalDiary.Persistence.Migrations
                     b.HasIndex("CityId")
                         .HasDatabaseName("ix_walk_places_city_id");
 
-                    b.ToTable("walk_places");
+                    b.ToTable("walk_places", (string)null);
                 });
 
             modelBuilder.Entity("PersonalDiary.Domain.Models.Reviews.CulturePlaceReview", b =>
@@ -451,7 +451,7 @@ namespace PersonalDiary.Persistence.Migrations
                     b.HasIndex("PlaceId")
                         .HasDatabaseName("ix_culture_place_reviews_place_id");
 
-                    b.ToTable("culture_place_reviews");
+                    b.ToTable("culture_place_reviews", (string)null);
                 });
 
             modelBuilder.Entity("PersonalDiary.Domain.Models.Reviews.FoodPlaceReview", b =>
@@ -501,7 +501,7 @@ namespace PersonalDiary.Persistence.Migrations
                     b.HasIndex("PlaceId")
                         .HasDatabaseName("ix_food_place_reviews_place_id");
 
-                    b.ToTable("food_place_reviews");
+                    b.ToTable("food_place_reviews", (string)null);
                 });
 
             modelBuilder.Entity("PersonalDiary.Domain.Models.Reviews.WalkPlaceReview", b =>
@@ -543,7 +543,7 @@ namespace PersonalDiary.Persistence.Migrations
                     b.HasIndex("PlaceId")
                         .HasDatabaseName("ix_walk_places_reviews_place_id");
 
-                    b.ToTable("walk_places_reviews");
+                    b.ToTable("walk_places_reviews", (string)null);
                 });
 
             modelBuilder.Entity("PersonalDiary.Domain.Models.Users.Role", b =>

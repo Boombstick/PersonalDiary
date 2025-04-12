@@ -9,6 +9,11 @@ namespace PersonalDiary.Persistence.Configurations
         public void Configure(EntityTypeBuilder<City> builder)
         {
             builder.HasKey(x => x.Id);
+
+            builder.HasMany(x => x.MediaFiles)
+                .WithOne()
+                .HasForeignKey(x => x.Id)
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

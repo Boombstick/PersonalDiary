@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using PersonalDiary.Domain.Models.Reviews;
+using PersonalDiary.Domain.AbstractClasses;
 
 namespace PersonalDiary.Persistence.Repositories
 {

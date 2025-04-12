@@ -11,12 +11,14 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 using PersonalDiary.Domain.Repositories;
 using PersonalDiary.Domain.Models.Users;
+using Microsoft.Extensions.FileProviders;
 using PersonalDiary.Application.Interfaces;
 using PersonalDiary.Persistence.Repositories;
 using PersonalDiary.Application.Infrastructure;
 using PersonalDiary.Domain.Repositories.Reviews;
+using PersonalDiary.Infrastructure.MediaManager;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using PersonalDiary.Application.Feature.Places.FoodPlaces;
+using PersonalDiary.Application.Feature.City.Places.FoodPlaces;
 using PersonalDiary.Persistence.Repositories.DictionaryRepository;
 using PersonalDiary.Persistence.Repositories.PlaceRepositories.Reviews;
 using PersonalDiary.Persistence.Repositories.PlaceRepositories.RateablePlaces;
@@ -56,6 +58,13 @@ namespace PersonalDiary.Api
             builder.Services.AddScoped<IMyTaskRepository, MyTaskRepository>();
             builder.Services.AddScoped<ITaskBoardRepository, TaskBoardRepository>();
             builder.Services.AddScoped<IDictionaryRepository, DictionaryRepository>();
+
+            // IOptions
+            builder.Services.Configure<FileStorageOptions>(builder.Configuration.GetSection("FileStorageOptions"));
+
+            // Infrasctructure
+            builder.Services.AddScoped<IFileUploader, FileUploader>();
+
 
             // MediatR
             builder.Services.AddMediatR(x => x.RegisterServicesFromAssembly(typeof(Create.Command).Assembly));
@@ -151,6 +160,17 @@ namespace PersonalDiary.Api
                 policy.AllowAnyHeader();
                 policy.AllowAnyMethod();
                 policy.AllowAnyOrigin();
+            });
+
+            var fileStorageOptions = builder.Configuration
+            .GetRequiredSection("FileStorageOptions")
+            .Get<FileStorageOptions>();
+            if (!Directory.Exists(fileStorageOptions!.BasePath))
+                Directory.CreateDirectory(fileStorageOptions!.BasePath);
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                FileProvider = new PhysicalFileProvider(fileStorageOptions!.BasePath),
+                RequestPath = "/files"  // URL-путь, по которому будут доступны файлы
             });
 
             app.UseHttpsRedirection();

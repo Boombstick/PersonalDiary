@@ -12,11 +12,13 @@ namespace PersonalDiary.Domain.Models
         public ICollection<WalkPlace> WalkPlaces { get; set; }
         public ICollection<FoodPlace> FoodPlaces { get; set; }
         public ICollection<CulturePlace> CulturePlaces { get; set; }
+        public ICollection<Media> MediaFiles { get; set; }
         public City()
         {
             WalkPlaces = new List<WalkPlace>();
             FoodPlaces = new List<FoodPlace>();
             CulturePlaces = new List<CulturePlace>();
+            MediaFiles = new List<Media>();
         }
     }
 }

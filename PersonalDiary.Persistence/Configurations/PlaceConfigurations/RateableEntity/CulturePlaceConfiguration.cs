@@ -19,6 +19,11 @@ namespace PersonalDiary.Persistence.Configurations.PlaceConfigurations.RateableE
                 .WithOne(x => x.Place)
                 .HasForeignKey(x => x.PlaceId)
                 .OnDelete(DeleteBehavior.Cascade);
+
+            builder.HasMany(x => x.MediaFiles)
+                .WithOne()
+                .HasForeignKey(x => x.Id)
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

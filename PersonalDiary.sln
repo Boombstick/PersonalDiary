@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalDiary.Tests", "Pers
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalDiary.Persistence", "PersonalDiary.Persistence\PersonalDiary.Persistence.csproj", "{890D43F4-BAEF-4F06-8C11-BA13AAEE723C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersonalDiary.Infrastructure", "PersonalDiary.Infrastructure\PersonalDiary.Infrastructure.csproj", "{6F233D74-8681-4E60-8F0D-01F46F008699}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +39,10 @@ Global
 		{890D43F4-BAEF-4F06-8C11-BA13AAEE723C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{890D43F4-BAEF-4F06-8C11-BA13AAEE723C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{890D43F4-BAEF-4F06-8C11-BA13AAEE723C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F233D74-8681-4E60-8F0D-01F46F008699}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F233D74-8681-4E60-8F0D-01F46F008699}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F233D74-8681-4E60-8F0D-01F46F008699}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F233D74-8681-4E60-8F0D-01F46F008699}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

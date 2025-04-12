@@ -12,13 +12,18 @@ namespace PersonalDiary.Persistence.Configurations.PlaceConfigurations.RateableE
             builder.HasKey(x => x.Id);
 
             builder.HasOne(x => x.City)
-                .WithMany(x=>x.WalkPlaces)
+                .WithMany(x => x.WalkPlaces)
                 .HasForeignKey(x => x.CityId)
                 .OnDelete(DeleteBehavior.Cascade);
 
             builder.HasMany(x => x.Reviews)
                 .WithOne(x => x.Place)
                 .HasForeignKey(x => x.PlaceId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            builder.HasMany(x => x.MediaFiles)
+                .WithOne()
+                .HasForeignKey(x => x.Id)
                 .OnDelete(DeleteBehavior.Cascade);
         }
     }

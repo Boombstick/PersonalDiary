@@ -1,9 +1,10 @@
-﻿using PersonalDiary.Domain.Interfaces;
+﻿using PersonalDiary.Domain.Models;
+using PersonalDiary.Domain.Interfaces;
 using PersonalDiary.Domain.Models.Users;
 
-namespace PersonalDiary.Domain.Models.Reviews
+namespace PersonalDiary.Domain.AbstractClasses
 {
-    public abstract class Review<TEntity> : ICreatedAt
+    public abstract class Review<TEntity> : ICreatedAt, IHaveMediaFiles
     {
         public long Id { get; set; }
         public string Comment { get; set; }
@@ -12,5 +13,6 @@ namespace PersonalDiary.Domain.Models.Reviews
         public DateTime CreatedAt { get; set; }
         public Guid PlaceId { get; set; }
         public TEntity Place { get; set; }
+        public ICollection<Media> MediaFiles { get; set; }
     }
 }
